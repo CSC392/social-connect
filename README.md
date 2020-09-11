@@ -1,7 +1,8 @@
 # Social Connect
 This is a project developed as part of DSC Community Projects in Fall 2020. 
 
-# Problem Statement: 
+
+## Problem Statement: 
 Prior to the social distancing regulations, the issue of keeping in touch with friends and family from a long distance is and was prevalent in many peoples’ lives. The ongoing social distancing restrictions have only served to amplify that difficulty in connecting, and have garnered a feeling of isolation and loneliness in many people. The few existing browser based gaming platforms, such as MSN games and Yahoo games, are outdated, visually unappealing, and are reliant on now obscure softwares such as flash player. This empty market birthed our idea for this project, in which we will build a platform that will allow users to play games online with friends and strangers if they so choose.
 
 
