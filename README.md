@@ -1,4 +1,4 @@
-# social-connect
+# Social Connect
 This is a project developed as part of DSC Community Projects in Fall 2020. 
 
 # Problem Statement: 
