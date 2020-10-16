@@ -5,6 +5,8 @@ const useStyles = makeStyles({
   header: {
     fontSize: "30px",
     marginTop: "10px",
+    marginBottom: "0px",
+    paddingBottom: "10px",
     borderBottom: `1px solid`,
   },
 });
