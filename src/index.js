@@ -1,27 +1,20 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { BackButton } from "./shared/BackButton";
-import { TopHeader } from "./shared/TopHeader";
-
-const Title = (props) => <h1> {props.text} </h1>
-const Button = (props) => <button onClick={props.handleClick}> {props.text} </button>
 
 const App = () => {
 
+  const [history, setHistory] = useState([])
   const [view, setView] = useState('menu')
-  const views = ['menu', 'host', 'play']
   
   const goBack = () => {
-    var prevView = views[views.findIndex(k => k === view) - 1]
-    setView(prevView)
+    setView(history.pop())
+    setHistory(history)
   }
 
-  const goHost = () => {
-    setView('host')
-  }
-
-  const goPlay = () => {
-    setView('play')
+  const goNext = (currView, nextView) => {
+    history.push(currView)
+    setHistory(history)
+    setView(nextView)
   }
 
   switch(view) {
@@ -29,27 +22,71 @@ const App = () => {
     case 'menu':
       return(
         <div>
-          <Title text="Menu" />
-          <Button handleClick={goHost} text="Host Game" />
-          <Button text="Browse Games" />
-          <Button text="Join Game" />
+          <div>
+            <h1>Menu</h1>
+          </div>
+          {/* < MenuView /> */}
+          <div>
+            <button onClick={() => goNext('menu', 'host')}>Host</button>
+            <button onClick={() => goNext('menu', 'browse')}>Browse</button>
+            <button onClick={() => goNext('menu', 'join')}>Join</button>
+          </div>
         </div>
       ) 
 
     case 'host':
       return(
         <div>
-          <Title text="Host" />
-          <Button handleClick={goBack} text="Back" />
-          <Button handleClick={goPlay} text="Play" />
+          <div>
+            <h1>Host</h1>
+          </div>
+          {/* < HostView /> */}
+          <div>
+            <button onClick={goBack}>Back</button>
+            <button onClick={() => goNext('host', 'play')}>Play</button>
+          </div> 
         </div>
       ) 
 
-    case 'play':
+      case 'browse':
       return(
         <div>
-          <Title text="Play" />
-          <Button handleClick={goBack} text="Back" />
+          <div>
+            <h1>Browse</h1>
+          </div>
+          {/* < BrowseView /> */}
+          <div>
+            <button onClick={goBack}>Back</button>
+            <button onClick={() => goNext('browse', 'play')}>Play</button>
+          </div>
+        </div>
+      ) 
+
+      case 'join':
+
+      return(
+        <div>
+          <div>
+            <h1>Join</h1>
+          </div>
+          {/* < JoinView /> */}
+          <div>
+            <button onClick={goBack}>Back</button>
+            <button onClick={() => goNext('join', 'play')}>Play</button>
+          </div>
+        </div>
+      ) 
+
+    case 'play': 
+      return(
+        <div>
+          <div>
+            <h1>Play</h1>  
+          </div>
+          {/* < PlayView /> */}
+          <div>
+            <button onClick={goBack}>Back</button>
+          </div>
         </div>
       ) 
 
