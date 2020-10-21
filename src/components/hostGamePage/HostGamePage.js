@@ -7,8 +7,8 @@ import {
   FormControl,
   MenuItem,
 } from "@material-ui/core";
-import { TopHeader } from "../shared/TopHeader";
-import { BackButton } from "../shared/BackButton";
+import { TopHeader } from "../TopHeader";
+import { BackButton } from "../BackButton";
 import { imagesData } from "./imagesData";
 
 const useStyles = makeStyles({
