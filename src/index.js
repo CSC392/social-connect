@@ -5,13 +5,13 @@ import { TopHeader } from "./components/TopHeader";
 import { Chessboard } from "./components/Chessboard";
 
 const App = () => {
-  
-  return(
+  return (
     <div>
-      < TopHeader text="Social Connect - Play" />
-      < Chessboard />
-    </div> 
-  )
-}
+      {/* Add Home Page here */}
+      <TopHeader text="Social Connect - Play" />
+      <Chessboard />
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById("root"));
