@@ -40,28 +40,38 @@ const useStyles = makeStyles({
     },
     sidebar: {
         float: "right",
-        padding: "0 0",
-        justifyContent: "flex-start",
-        position: "relative"
+        paddingTop: "0px",
+        justifyContent: "flex-end",
+        // position: "top",
+        display: "flex",
+        flexDirection: "column",
+        paddingRight: "75px",
+        marginTop: "0px"
+
 
     },
     GameSelection: {
-        fontSize: "25px",
+        fontSize: "30px",
+        textAlign: "center"
     },
     PublicGame: {
         backgroundColor: "#BEBEBE",
         fontSize: "20px",
         padding: "4px 2px",
+        textAlign: "center",
+        fontSize: "28px"
         // marginTop: "75px",
     },
     StartGame: {
         backgroundColor: "#C8BFE7",
         fontSize: "35px",
-        padding: "4px 2px",
+        padding: "4px 10px",
         "&:hover": {
             backgroundColor: "#8474BE",
         },
+        textAlign: "center"
     }
+
 });
 
 export const LobbyPage = () => {
@@ -77,11 +87,13 @@ export const LobbyPage = () => {
             <div className={classes.body}>
                 <p className={classes.gamePlayer1}>Player 1</p>
             </div>
+
+
             <div className={classes.sidebar}>
                 <div className={classes.GameSelection}>
                     <p>Game Selection</p>
-                    <div className={classes.imgg}>
-                        <img className={classes.image} src="./chessBoard.png"></img>
+                    <div className={classes.img}>
+                        <img src="./chessBoard.png"></img>
                     </div>
 
                 </div>
