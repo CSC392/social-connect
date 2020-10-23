@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { Button, makeStyles, TextField } from "@material-ui/core";
-import { TopHeader } from "./shared/TopHeader";
-import { BackButton } from "./shared/BackButton";
+import { TopHeader } from "./TopHeader";
+import { PageNameHeader } from "./PageNameHeader";
 
 const useStyles = makeStyles({
-  backButton: {
-    marginTop: "10px",
-  },
   body: {
     paddingTop: "50px",
     display: "flex",
@@ -53,7 +50,7 @@ export const PlayPage = () => {
     <div>
       <TopHeader />
       <div className={classes.backButton}>
-        <BackButton />
+        <PageNameHeader title="Menu" onClick={() => {}}></PageNameHeader>
       </div>
       <div className={classes.body}>
         <TextField

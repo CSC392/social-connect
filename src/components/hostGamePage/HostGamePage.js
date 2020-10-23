@@ -7,9 +7,9 @@ import {
   FormControl,
   MenuItem,
 } from "@material-ui/core";
-import { TopHeader } from "../shared/TopHeader";
-import { BackButton } from "../shared/BackButton";
+import { TopHeader } from "../TopHeader";
 import { imagesData } from "./imagesData";
+import { PageNameHeader } from "../PageNameHeader";
 
 const useStyles = makeStyles({
   header: {
@@ -19,17 +19,6 @@ const useStyles = makeStyles({
     borderBottom: `1px solid`,
     position: "relative",
     padding: "10px 0",
-  },
-  Backbutton: {
-    flex: "0 1 auto",
-    marginLeft: "auto",
-  },
-  title: {
-    fontSize: "25px",
-    flex: "0 1 auto",
-    position: "absolute",
-    left: "50%",
-    transform: "translateX(-50%)",
   },
   body: {
     display: "flex",
@@ -83,10 +72,7 @@ export const HostGamePage = () => {
   return (
     <div>
       <TopHeader />
-      <div className={classes.header}>
-        <BackButton className={classes.Backbutton} />
-        <p className={classes.title}>Host Game</p>
-      </div>
+      <PageNameHeader title="Host Game" onClick={() => {}}></PageNameHeader>
       <div className={classes.body}>
         <p>Game Selection</p>
         <FormControl className={classes.gameSelection}>
