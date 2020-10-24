@@ -57,7 +57,7 @@ export const HomePage = () => {
         <Button className={classes.PlayButton}>
           Start Playing
         </Button>
-
+        
         <h2>The best place to stay connected</h2>
       </div>
 
@@ -78,7 +78,7 @@ export const HomePage = () => {
       </Box>
 
     </div>
-    
+
     </div>
     
   );
