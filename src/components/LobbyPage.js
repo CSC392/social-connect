@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { TopHeader } from "./TopHeader";
-import { PageNameHeader } from "./PageNameHeader";
 import { Button } from "@material-ui/core";
 import { imagesData } from "./hostGamePage/imagesData";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   body: {
@@ -42,6 +42,18 @@ const useStyles = makeStyles({
   vs: {
     margin: "0px 10px",
   },
+  link: {
+    textDecoration: "none",
+  },
+  Backbutton: {
+    backgroundColor: "#C8BFE7",
+    fontSize: "10px",
+    variant: "contained",
+    marginTop: "10px",
+    "&:hover": {
+      backgroundColor: "#8474BE",
+    },
+  },
 });
 
 export const LobbyPage = () => {
@@ -56,7 +68,11 @@ export const LobbyPage = () => {
   return (
     <div>
       <TopHeader />
-      <PageNameHeader title="Lobby" onClick={() => {}} />
+      <div className={classes.backButton}>
+        <Link to="/play" className={classes.link}>
+          <Button className={classes.Backbutton}>Back</Button>
+        </Link>
+      </div>
       <div className={classes.body}>
         <p className={classes.headers}>Game Selection</p>
         <img src={selectedGameData[0].img} className={classes.gameName}></img>
