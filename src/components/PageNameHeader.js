@@ -29,6 +29,7 @@ const useStyles = makeStyles({
 });
 export const PageNameHeader = (props) => {
   const classes = useStyles({});
+  console.log(props)
 
   return (
     <div className={classes.header}>

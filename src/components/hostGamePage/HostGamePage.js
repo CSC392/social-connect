@@ -62,7 +62,10 @@ const useStyles = makeStyles({
   },
 });
 
-export const HostGamePage = () => {
+export const HostGamePage = (props) => {
+
+  console.log(props)
+
   const classes = useStyles({});
   const [disable, setDisable] = useState(false);
   const [gameSelection, setGameSelection] = useState("");
@@ -76,7 +79,7 @@ export const HostGamePage = () => {
   return (
     <div>
       <TopHeader />
-      <PageNameHeader title="Host Game" onClick={() => {}}></PageNameHeader>
+      <PageNameHeader title="Host Game" onClick={props.goBack}></PageNameHeader>
       <div className={classes.body}>
         <p>Game Selection</p>
         <FormControl className={classes.gameSelection}>

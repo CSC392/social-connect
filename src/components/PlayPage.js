@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import { TopHeader } from "./TopHeader";
 import { Link } from "react-router-dom";
+import { HostGamePage } from "./hostGamePage/HostGamePage";
 
 const useStyles = makeStyles({
   body: {
@@ -51,38 +52,95 @@ const useStyles = makeStyles({
   },
 });
 
-export const PlayPage = () => {
+const MenuView = (props) => {
   const classes = useStyles({});
-  const [username, setUsername] = useState("");
+  
   const handleChange = (event) => {
-    setUsername(event.target.value);
+    props.setUsername(event.target.value);
   };
-  const validUsername = username ? false : true;
+  const validUsername = props.username ? false : true;
   return (
     <div>
+
       <TopHeader />
+
       <div className={classes.backButton}>
         <Link to="/" className={classes.link}>
           <Button className={classes.Backbutton}>Back</Button>
         </Link>
       </div>
+
       <div className={classes.body}>
-        <TextField
-          variant="outlined"
-          label="Enter Username"
-          onChange={handleChange}
-          error={validUsername}
-        ></TextField>
-        <Button className={classes.hostButton} disabled={validUsername}>
-          Host Game
-        </Button>
-        <Button className={classes.browseButton} disabled={validUsername}>
-          Browse Game
-        </Button>
-        <Button className={classes.joinButton} disabled={validUsername}>
-          Join Game
-        </Button>
+        <TextField variant="outlined" label="Enter Username" onChange={handleChange} error={validUsername}></TextField>
+        <Button className={classes.hostButton} disabled={validUsername} onClick={()=>{props.goNext('menu', 'host')}}>Host Game</Button>
+        <Button className={classes.browseButton} disabled={validUsername} onClick={()=>{props.goNext('menu', 'browse')}}>Browse Game</Button>
+        <Button className={classes.joinButton} disabled={validUsername} onClick={()=>{props.goNext('menu', 'join')}}>Join Game</Button>
       </div>
+
     </div>
   );
+}
+
+export const PlayPage = () => {
+
+  const [username, setUsername] = useState("");
+
+  const [view, setView] = useState('menu')
+  const [history, setHistory] = useState([])  
+
+  // console.log(history)
+
+  const goNext = (currView, nextView) => {
+    history.push(currView)
+    setHistory(history)
+    setView(nextView)
+  }
+
+  const goBack = () => {
+    setView(history.pop())
+    setHistory(history)
+  }
+
+  switch(view) {
+
+    case 'menu':
+      return(
+        < MenuView 
+
+          username={username}
+          setUsername={setUsername}
+
+          history={history}
+
+          goNext={goNext}
+          goBack={goBack}
+
+        />
+      )
+    
+    case 'host':
+      return( 
+        < HostGamePage 
+
+          username={username}
+          setUsername={setUsername}
+
+          history={history}
+
+          goNext={goNext}
+          goBack={goBack}
+
+        />
+      )
+
+    case 'browse':
+      return <div>browse</div>
+
+    case 'join':
+      return <div>join</div>
+
+    default:
+      return <div> Error </div>
+
+  }
 };
