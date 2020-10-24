@@ -10,6 +10,7 @@ import {
 import { TopHeader } from "../TopHeader";
 import { imagesData } from "./imagesData";
 import { PageNameHeader } from "../PageNameHeader";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   header: {
@@ -55,6 +56,9 @@ const useStyles = makeStyles({
   },
   image: {
     marginTop: "10px",
+  },
+  link: {
+    textDecoration: "none",
   },
 });
 
@@ -107,12 +111,13 @@ export const HostGamePage = () => {
             Private
           </Button>
         </ButtonGroup>
-
         <Button
           className={classes.hostButton}
           disabled={!(gameSelection && selectedGameData[0].isDone)}
         >
-          Host
+          <Link to="/play/game" className={classes.link}>
+            Host
+          </Link>
         </Button>
       </div>
     </div>
