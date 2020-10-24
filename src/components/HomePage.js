@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, makeStyles } from "@material-ui/core";
-import { TopHeader } from "./components/TopHeader";
-import chessBoard from "./components/hostGamePage/chessBoard.png";
-import Box from '@material-ui/core/Box';
+import { TopHeader } from "./TopHeader";
+import chessBoard from "./hostGamePage/chessBoard.png";
+import Box from "@material-ui/core/Box";
 
 const styles = makeStyles({
   body: {
@@ -10,6 +11,9 @@ const styles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  link: {
+    textDecoration: "none",
   },
   playButton: {
     backgroundColor: "#C8BFE7",
@@ -31,13 +35,12 @@ const styles = makeStyles({
   box: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   miniBox: {
     paddingRight: "100px",
-  }
-  
-})
+  },
+});
 
 export const HomePage = () => {
   const classes = styles({});
@@ -48,34 +51,31 @@ export const HomePage = () => {
         <p>Welcome To Social Connect</p>
         <img src={chessBoard} />
       </div>
-      
+
       <div className={classes.body}>
-        <Button className={classes.playButton}>
-          Start Playing
-        </Button>
-        
+        <Link to="/play" className={classes.link}>
+          <Button className={classes.playButton}>Start Playing</Button>
+        </Link>
+
         <h2>The best place to stay connected</h2>
       </div>
 
-      <div style={{ width: '100%' }}>
-      <Box className={classes.box} p={1}> 
-        <Box p={1} className={classes.miniBox}>
-          <h2>Connect With Friends or Strangers</h2>
+      <div style={{ width: "100%" }}>
+        <Box className={classes.box} p={1}>
+          <Box p={1} className={classes.miniBox}>
+            <h2>Connect With Friends or Strangers</h2>
+          </Box>
+          <Box p={1} className={classes.miniBox}>
+            <h2>Communicate via Chat</h2>
+          </Box>
+          <Box p={1} className={classes.miniBox}>
+            <h2>Play a Variety of Games</h2>
+          </Box>
+          <Box p={1} className={classes.miniBox}>
+            <h2>More Features Coming Soon</h2>
+          </Box>
         </Box>
-        <Box p={1} className={classes.miniBox}>
-          <h2>Communicate via Chat</h2>
-        </Box>
-        <Box p={1} className={classes.miniBox}>
-          <h2>Play a Variety of Games</h2>
-        </Box>
-        <Box p={1} className={classes.miniBox}>
-          <h2>More Features Coming Soon</h2>
-        </Box>
-      </Box>
-
+      </div>
     </div>
-
-    </div>
-    
   );
 };

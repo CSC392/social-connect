@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import { TopHeader } from "./TopHeader";
-import { PageNameHeader } from "./PageNameHeader";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   body: {
@@ -9,6 +9,18 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  Backbutton: {
+    backgroundColor: "#C8BFE7",
+    fontSize: "10px",
+    variant: "contained",
+    marginTop: "10px",
+    "&:hover": {
+      backgroundColor: "#8474BE",
+    },
+  },
+  link: {
+    textDecoration: "none",
   },
   hostButton: {
     backgroundColor: "#C8BFE7",
@@ -50,7 +62,9 @@ export const PlayPage = () => {
     <div>
       <TopHeader />
       <div className={classes.backButton}>
-        <PageNameHeader title="Menu" onClick={() => {}}></PageNameHeader>
+        <Link to="/" className={classes.link}>
+          <Button className={classes.Backbutton}>Back</Button>
+        </Link>
       </div>
       <div className={classes.body}>
         <TextField
