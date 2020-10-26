@@ -7,10 +7,10 @@ import {
   FormControl,
   MenuItem,
 } from "@material-ui/core";
-import { TopHeader } from "../TopHeader";
-import { imagesData } from "./imagesData";
-import { PageNameHeader } from "../PageNameHeader";
+import { TopHeader } from "./TopHeader";
+import { PageNameHeader } from "./PageNameHeader";
 import { Link } from "react-router-dom";
+import { imagesData } from "../assets/imagesData";
 
 const useStyles = makeStyles({
   header: {
@@ -62,10 +62,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const HostGamePage = (props) => {
-
-  console.log(props)
-
+export const HostView = (props) => {
   const classes = useStyles({});
   const [disable, setDisable] = useState(false);
   const [gameSelection, setGameSelection] = useState("");
@@ -90,7 +87,7 @@ export const HostGamePage = (props) => {
           </Select>
         </FormControl>
         {gameSelection && (
-          <img className={classes.image} src={selectedGameData[0].img} />
+          <img className={classes.image} src={selectedGameData[0].img} alt="" />
         )}
 
         <p className={classes.gamePrivacy}>Game Privacy</p>

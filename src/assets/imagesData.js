@@ -1,5 +1,5 @@
-import chessImage from "./chessBoard.png";
-import comingSoon from "./comingSoon.png";
+import chessImage from "../assets/chess.png";
+import tempImage from "../assets/temp.png";
 
 export const imagesData = [
   {
@@ -8,7 +8,7 @@ export const imagesData = [
     isDone: true,
   },
   {
-    img: comingSoon,
+    img: tempImage,
     title: "Checkers",
     isDone: false,
   },

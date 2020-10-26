@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, makeStyles } from "@material-ui/core";
 import { TopHeader } from "./TopHeader";
-import chessBoard from "./hostGamePage/chessBoard.png";
+import chessImage from "../assets/chess.png";
 import Box from "@material-ui/core/Box";
 
 const styles = makeStyles({
@@ -49,7 +49,7 @@ export const HomePage = () => {
       <TopHeader />
       <div className={classes.welcomeBanner}>
         <p>Welcome To Social Connect</p>
-        <img src={chessBoard} />
+        <img src={chessImage} alt="" />
       </div>
 
       <div className={classes.body}>

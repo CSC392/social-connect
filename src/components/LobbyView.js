@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { TopHeader } from "./TopHeader";
 import { Button } from "@material-ui/core";
-import { imagesData } from "./hostGamePage/imagesData";
+import { imagesData } from "../assets/imagesData";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
@@ -56,7 +56,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const LobbyPage = () => {
+export const LobbyView = (props) => {
   const classes = useStyles({});
 
   //This is to get the name of the game selected
@@ -75,7 +75,11 @@ export const LobbyPage = () => {
       </div>
       <div className={classes.body}>
         <p className={classes.headers}>Game Selection</p>
-        <img src={selectedGameData[0].img} className={classes.gameName}></img>
+        <img
+          src={selectedGameData[0].img}
+          className={classes.gameName}
+          alt=""
+        ></img>
         <p className={classes.headers}>Game Settings</p>
         <div className={classes.subheaders}>
           <p className={classes.titles}>Game Privacy</p>
@@ -91,7 +95,14 @@ export const LobbyPage = () => {
           <p className={classes.vs}>vs</p>
           <p className={classes.greyText}>Player 2</p>
         </div>
-        <Button className={classes.startGame}>Start Game</Button>
+        <Button
+          className={classes.startGame}
+          onClick={() => {
+            props.goNext("lobby", "game");
+          }}
+        >
+          Start Game
+        </Button>
       </div>
     </div>
   );
