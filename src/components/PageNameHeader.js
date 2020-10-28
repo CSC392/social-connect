@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   title: {
     fontSize: "25px",
     flex: "0 1 auto",
-    position: "absolute",
+    position: "relative",
     left: "50%",
     transform: "translateX(-50%)",
   },

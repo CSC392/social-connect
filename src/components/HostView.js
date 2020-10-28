@@ -1,69 +1,19 @@
 import React, { useState } from "react";
 import {
   Button,
-  makeStyles,
   ButtonGroup,
   Select,
   FormControl,
   MenuItem,
 } from "@material-ui/core";
-import { TopHeader } from "../TopHeader";
-import { imagesData } from "./imagesData";
-import { PageNameHeader } from "../PageNameHeader";
+import { TopHeader } from "./TopHeader";
+import { PageNameHeader } from "./PageNameHeader";
 import { Link } from "react-router-dom";
+import { imagesData } from "../assets/imagesData";
+import { HostViewStyles } from "../styles/HostViewStyles";
 
-const useStyles = makeStyles({
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    borderBottom: `1px solid`,
-    position: "relative",
-    padding: "10px 0",
-  },
-  body: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    fontSize: "20px",
-  },
-  gamePrivacy: {
-    marginTop: "30px",
-  },
-  gameSettingsButton: {
-    backgroundColor: "#C8BFE7",
-    fontSize: "15px",
-    "&:disabled": {
-      backgroundColor: "#8474BE",
-    },
-    "&:hover": {
-      backgroundColor: "#8474BE",
-    },
-  },
-  hostButton: {
-    backgroundColor: "#C8BFE7",
-    fontSize: "15px",
-    marginTop: "30px",
-    "&:hover": {
-      backgroundColor: "#8474BE",
-    },
-    "&:disabled": {
-      backgroundColor: "#0000001f",
-    },
-  },
-  gameSelection: {
-    minWidth: "120px",
-  },
-  image: {
-    marginTop: "10px",
-  },
-  link: {
-    textDecoration: "none",
-  },
-});
-
-export const HostGamePage = () => {
-  const classes = useStyles({});
+export const HostView = (props) => {
+  const classes = HostViewStyles({});
   const [disable, setDisable] = useState(false);
   const [gameSelection, setGameSelection] = useState("");
   const handleChange = (event) => {
@@ -76,7 +26,7 @@ export const HostGamePage = () => {
   return (
     <div>
       <TopHeader />
-      <PageNameHeader title="Host Game" onClick={() => {}}></PageNameHeader>
+      <PageNameHeader title="Host Game" onClick={props.goBack}></PageNameHeader>
       <div className={classes.body}>
         <p>Game Selection</p>
         <FormControl className={classes.gameSelection}>
@@ -87,7 +37,7 @@ export const HostGamePage = () => {
           </Select>
         </FormControl>
         {gameSelection && (
-          <img className={classes.image} src={selectedGameData[0].img} />
+          <img className={classes.image} src={selectedGameData[0].img} alt="" />
         )}
 
         <p className={classes.gamePrivacy}>Game Privacy</p>

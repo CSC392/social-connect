@@ -13,5 +13,5 @@ const useStyles = makeStyles({
 
 export const TopHeader = () => {
   const classes = useStyles({});
-  return <p className={classes.header}> Social Connect</p>;
+  return <div className={classes.header}> Social Connect </div>;
 };
