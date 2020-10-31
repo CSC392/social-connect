@@ -3,9 +3,27 @@ import Chessboardjsx from "chessboardjsx";
 import { TopHeader } from "./TopHeader";
 import { PageNameHeader } from "./PageNameHeader";
 import Chess from "chess.js";
+import { Button, Dialog, DialogTitle, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  playButton: {
+    backgroundColor: "#C8BFE7",
+    fontSize: "15px",
+    "&:hover": {
+      backgroundColor: "#8474BE",
+    },
+    borderRadius: "0px",
+  },
+});
 
 export const GameView = (props) => {
   const [chess, setChess] = useState(null);
+  const [gameOver, setGameOver] = useState({
+    gameOver: false,
+    gameOverType: "",
+  });
+  const [player, setPlayer] = useState("");
+  const classes = useStyles({});
 
   useEffect(() => {
     setChess(new Chess());
@@ -13,7 +31,6 @@ export const GameView = (props) => {
 
   const [gameState, setGameState] = useState({
     fen: "start",
-    // custom square styles
   });
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
@@ -26,16 +43,45 @@ export const GameView = (props) => {
 
     // illegal move
     if (move === null) return;
+    const checkmate = chess.in_checkmate();
+    const stalemate = chess.in_stalemate();
+    const threefoldRepetition = chess.in_threefold_repetition();
+    const insufficientMaterial = chess.insufficient_material();
+    chess.turn() === "b" ? setPlayer("White") : setPlayer("Black");
+    if (checkmate) {
+      setGameOver({ gameOver: true, gameOverType: "checkmate" });
+    } else if (stalemate) {
+      setGameOver({ gameOver: true, gameOverType: "stalemate" });
+    } else if (threefoldRepetition) {
+      setGameOver({ gameOver: true, gameOverType: "threefold repetition" });
+    } else if (insufficientMaterial) {
+      setGameOver({ gameOver: true, gameOverType: "insufficient material" });
+    } else {
+      setGameOver({ gameOver: false, gameOverType: "" });
+    }
     setGameState({
       fen: chess.fen(),
     });
   };
+
+  const isDraw =
+    gameOver.gameOverType === "checkmate" ? `${player} wins` : "Draw";
 
   return (
     <div>
       <TopHeader />
       <PageNameHeader title="Chess" onClick={props.goBack}></PageNameHeader>
       <Chessboardjsx position={gameState.fen} onDrop={onDrop} />
+      {gameOver.gameOver && (
+        <Dialog open={true}>
+          <DialogTitle>
+            {isDraw} by {gameOver.gameOverType}!
+          </DialogTitle>
+          <Button className={classes.playButton} onClick={props.goBack}>
+            Play again
+          </Button>
+        </Dialog>
+      )}
     </div>
   );
 };
