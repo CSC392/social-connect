@@ -11,6 +11,7 @@ import { PageNameHeader } from "./PageNameHeader";
 import { Link } from "react-router-dom";
 import { imagesData } from "../assets/imagesData";
 import { HostViewStyles } from "../styles/HostViewStyles";
+import { uid } from "uid";
 
 export const HostView = (props) => {
   const classes = HostViewStyles({});
@@ -22,6 +23,8 @@ export const HostView = (props) => {
   const selectedGameData = imagesData.filter(
     (image) => image.title === gameSelection
   );
+
+  const code = uid(6);
 
   return (
     <div>
@@ -65,7 +68,7 @@ export const HostView = (props) => {
           className={classes.hostButton}
           disabled={!(gameSelection && selectedGameData[0].isDone)}
         >
-          <Link to="/play/game" className={classes.link}>
+          <Link to={`/play/${code}`} className={classes.link}>
             Host
           </Link>
         </Button>
