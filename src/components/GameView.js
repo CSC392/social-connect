@@ -23,6 +23,7 @@ export const GameView = (props) => {
     gameOverType: "",
   });
   const [player, setPlayer] = useState("white");
+  const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
   useEffect(() => {
@@ -47,7 +48,8 @@ export const GameView = (props) => {
     const stalemate = chess.in_stalemate();
     const threefoldRepetition = chess.in_threefold_repetition();
     const insufficientMaterial = chess.insufficient_material();
-    chess.turn() === "b" ? setPlayer("black") : setPlayer("white");
+    chess.turn() === "w" ? setPlayer("white") : setPlayer("black");
+    chess.turn() === "w" ? setWinner("Black") : setWinner("White");
     if (checkmate) {
       setGameOver({ gameOver: true, gameOverType: "checkmate" });
     } else if (stalemate) {
@@ -64,8 +66,8 @@ export const GameView = (props) => {
     });
   };
 
-  const isDraw =
-    gameOver.gameOverType === "checkmate" ? `${player} wins` : "Draw";
+  const isDone =
+    gameOver.gameOverType === "checkmate" ? `${winner} wins` : "Draw";
 
   return (
     <div>
@@ -79,7 +81,7 @@ export const GameView = (props) => {
       {gameOver.gameOver && (
         <Dialog open={true}>
           <DialogTitle>
-            {isDraw} by {gameOver.gameOverType}!
+            {isDone} by {gameOver.gameOverType}!
           </DialogTitle>
           <Button className={classes.playButton} onClick={props.goBack}>
             Play again
