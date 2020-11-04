@@ -46,11 +46,4 @@ export const MenuViewStyles = makeStyles({
       backgroundColor: "#8474BE",
     },
   },
-  joinCodeButton: {
-    backgroundColor: "#C8BFE7",
-    fontSize: "15px",
-    "&:hover": {
-      backgroundColor: "#8474BE",
-    },
-  },
 });
