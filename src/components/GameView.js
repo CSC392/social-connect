@@ -48,7 +48,6 @@ export const GameView = (props) => {
     const stalemate = chess.in_stalemate();
     const threefoldRepetition = chess.in_threefold_repetition();
     const insufficientMaterial = chess.insufficient_material();
-    chess.turn() === "w" ? setPlayer("white") : setPlayer("black");
     chess.turn() === "w" ? setWinner("Black") : setWinner("White");
     if (checkmate) {
       setGameOver({ gameOver: true, gameOverType: "checkmate" });
@@ -88,6 +87,8 @@ export const GameView = (props) => {
           </Button>
         </Dialog>
       )}
+      <button onClick={() => setPlayer("white")}>White POV</button>
+      <button onClick={() => setPlayer("black")}>Black POV</button>
     </div>
   );
 };
