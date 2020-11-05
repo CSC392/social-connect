@@ -22,7 +22,7 @@ export const GameView = (props) => {
     gameOver: false,
     gameOverType: "",
   });
-  const [player, setPlayer] = useState("white");
+  const [turn, setTurn] = useState("White");
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
@@ -48,7 +48,7 @@ export const GameView = (props) => {
     const stalemate = chess.in_stalemate();
     const threefoldRepetition = chess.in_threefold_repetition();
     const insufficientMaterial = chess.insufficient_material();
-    chess.turn() === "w" ? setPlayer("white") : setPlayer("black");
+    chess.turn() === "w" ? setTurn("White") : setTurn("Black");
     chess.turn() === "w" ? setWinner("Black") : setWinner("White");
     if (checkmate) {
       setGameOver({ gameOver: true, gameOverType: "checkmate" });
@@ -73,11 +73,8 @@ export const GameView = (props) => {
     <div>
       <TopHeader />
       <PageNameHeader title="Chess" onClick={props.goBack}></PageNameHeader>
-      <Chessboardjsx
-        position={gameState.fen}
-        onDrop={onDrop}
-        orientation={player}
-      />
+      <Chessboardjsx position={gameState.fen} onDrop={onDrop} />
+      <h1>{turn}'s Turn</h1>
       {gameOver.gameOver && (
         <Dialog open={true}>
           <DialogTitle>
