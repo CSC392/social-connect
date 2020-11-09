@@ -8,9 +8,11 @@ import { LobbyViewStyles } from "../styles/LobbyViewStyles";
 export const LobbyView = (props) => {
   const classes = LobbyViewStyles({});
 
+  const { gameSelection, gameSettings, gameCode, playerOne } = props;
+
   //This is to get the name of the game selected
   const selectedGameData = imagesData.filter(
-    (image) => image.title === props.gameSelection
+    (image) => image.title === gameSelection
   );
 
   return (
@@ -31,13 +33,13 @@ export const LobbyView = (props) => {
         <p className={classes.headers}>Game Settings</p>
         <div className={classes.subheaders}>
           <p className={classes.titles}>Game Privacy</p>
-          <p className={classes.greyText}>{props.gameSettings}</p>
+          <p className={classes.greyText}>{gameSettings}</p>
           <p className={classes.titles}>Game Code</p>
-          <p className={classes.greyText}>{props.gameCode}</p>
+          <p className={classes.greyText}>{gameCode}</p>
         </div>
         <p className={classes.headers}>Players</p>
         <div className={classes.subheaders}>
-          <p className={classes.greyText}>{props.playerOne}</p>
+          <p className={classes.greyText}>{playerOne}</p>
           <p className={classes.vs}>vs</p>
           <p className={classes.greyText}>Player 2</p>
         </div>
