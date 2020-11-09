@@ -17,6 +17,7 @@ export const HostView = (props) => {
   const classes = HostViewStyles({});
   const [disable, setDisable] = useState(false);
   const [gameSelection, setGameSelection] = useState("");
+  const [gameSettings, setGameSettings] = useState("Private");
   const handleChange = (event) => {
     setGameSelection(event.target.value);
   };
@@ -48,7 +49,10 @@ export const HostView = (props) => {
           <Button
             className={classes.gameSettingsButton}
             variant="contained"
-            onClick={() => setDisable(true)}
+            onClick={() => {
+              setDisable(true);
+              setGameSettings("Public");
+            }}
             disabled={disable}
             disableElevation={true}
           >
@@ -57,7 +61,10 @@ export const HostView = (props) => {
           <Button
             className={classes.gameSettingsButton}
             variant="contained"
-            onClick={() => setDisable(false)}
+            onClick={() => {
+              setDisable(false);
+              setGameSettings("Private");
+            }}
             disabled={!disable}
             disableElevation={true}
           >
@@ -68,7 +75,18 @@ export const HostView = (props) => {
           className={classes.hostButton}
           disabled={!(gameSelection && selectedGameData[0].isDone)}
         >
-          <Link to={`/play/${code}`} className={classes.link}>
+          <Link
+            to={{
+              pathname: `/play/${code}`,
+              state: {
+                gameSelection: gameSelection,
+                gameCode: code,
+                gameSettings: gameSettings,
+                playerOne: props.username,
+              },
+            }}
+            className={classes.link}
+          >
             Host
           </Link>
         </Button>
