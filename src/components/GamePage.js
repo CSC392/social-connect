@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LobbyView } from "./LobbyView";
 import { GameView } from "./GameView";
+
+// import io from "socket.io-client";
+const express = require("express");
+const http = require("http");
+const server = require("socket.io");
+const port = 3000; //default
 
 export const GamePage = () => {
   const [username, setUsername] = useState("");
@@ -18,6 +24,14 @@ export const GamePage = () => {
     setView(history.pop());
     setHistory(history);
   };
+
+  //const socket = io("http://127.0.0.1:3000");
+
+  useEffect(() => {
+    server.listen(port, () =>
+      console.log("Server started. Listening on port " + port)
+    );
+  });
 
   switch (view) {
     case "lobby":
