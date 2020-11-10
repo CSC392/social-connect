@@ -46,11 +46,25 @@ export const MenuViewStyles = makeStyles({
       backgroundColor: "#8474BE",
     },
   },
-  joinCodeButton: {
+  joinMenuButton: {
     backgroundColor: "#C8BFE7",
     fontSize: "15px",
     "&:hover": {
       backgroundColor: "#8474BE",
     },
+  },
+  closeButton: {
+    position: "absolute",
+    left: "95%",
+    top: "-10%",
+    backgroundColor: "#C8BFE7",
+    color: "black",
+    "&:hover": {
+      backgroundColor: "#8474BE",
+      color: "red",
+    },
+  },
+  joinMenu: {
+    overflowY: "unset",
   },
 });
