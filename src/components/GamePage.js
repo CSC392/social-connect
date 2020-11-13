@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { LobbyView } from "./LobbyView";
 import { GameView } from "./GameView";
 
-export const GamePage = () => {
-  const [username, setUsername] = useState("");
-
+export const GamePage = (props) => {
   const [view, setView] = useState("lobby");
   const [history, setHistory] = useState([]);
 
@@ -19,28 +17,29 @@ export const GamePage = () => {
     setHistory(history);
   };
 
+  const {
+    gameCode,
+    gameSelection,
+    gameSettings,
+    playerOne,
+  } = props.location.state;
+
   switch (view) {
     case "lobby":
       return (
         <LobbyView
-          username={username}
-          setUsername={setUsername}
           history={history}
           goNext={goNext}
           goBack={goBack}
+          gameSelection={gameSelection}
+          gameCode={gameCode}
+          gameSettings={gameSettings}
+          playerOne={playerOne}
         />
       );
 
     case "game":
-      return (
-        <GameView
-          username={username}
-          setUsername={setUsername}
-          history={history}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
+      return <GameView history={history} goNext={goNext} goBack={goBack} />;
 
     default:
       return <div> Error </div>;

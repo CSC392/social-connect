@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, TextField, Dialog, DialogTitle } from "@material-ui/core";
+import {
+  Button,
+  TextField,
+  Dialog,
+  DialogTitle,
+  IconButton,
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import { TopHeader } from "./TopHeader";
 import { Link } from "react-router-dom";
 import { MenuViewStyles } from "../styles/MenuViewStyles";
@@ -58,21 +65,34 @@ export const MenuView = (props) => {
         >
           Join Game
         </Button>
-        {showJoinMenu && (
-          <Dialog open={true}>
-            <DialogTitle>
-              <TextField
-                variant="outlined"
-                label="Enter Game Code"
-                onChange={handleJoinChange}
-                error={validJoinCode}
-              ></TextField>
-            </DialogTitle>
-            <Button disabled={validJoinCode} className={classes.joinCodeButton}>
-              <Link to="/play/game">Join Game</Link>
-            </Button>
-          </Dialog>
-        )}
+        <Dialog
+          open={showJoinMenu}
+          classes={{ paper: classes.joinMenu }}
+          onClose={() => {
+            setShowJoinMenu(false);
+          }}
+        >
+          <DialogTitle>
+            <TextField
+              variant="outlined"
+              label="Enter Game Code"
+              onChange={handleJoinChange}
+              error={validJoinCode}
+            ></TextField>
+            <IconButton
+              className={classes.closeButton}
+              size="small"
+              onClick={() => {
+                setShowJoinMenu(false);
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <Button disabled={validJoinCode} className={classes.joinMenuButton}>
+            <Link to="/play/game">Join Game</Link>
+          </Button>
+        </Dialog>
       </div>
     </div>
   );
