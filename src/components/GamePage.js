@@ -39,7 +39,14 @@ export const GamePage = (props) => {
       );
 
     case "game":
-      return <GameView history={history} goNext={goNext} goBack={goBack} />;
+      return (
+        <GameView
+          history={history}
+          goNext={goNext}
+          goBack={goBack}
+          playerOne={playerOne}
+        />
+      );
 
     default:
       return <div> Error </div>;

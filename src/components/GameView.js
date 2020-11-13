@@ -113,7 +113,7 @@ export const GameView = (props) => {
         <div>
           <Box bgcolor={turn === "White" ? "#8474BE" : "white"} {...playerBox}>
             <Box bgcolor="white" {...iconBox} />
-            <h1 style={{ textAlign: "center" }}>Player 1</h1>
+            <h1 style={{ textAlign: "center" }}>{props.playerOne}</h1>
           </Box>
           <Box bgcolor={turn === "Black" ? "#8474BE" : "white"} {...playerBox}>
             <Box bgcolor="black" {...iconBox} />
