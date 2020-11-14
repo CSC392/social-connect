@@ -5,7 +5,7 @@ const server = http.createServer(app);
 const socketio = require("socket.io");
 const gameLogic = require("./gameLogic");
 
-const io = socketio(server);
+const io = socketio(server, { transports: ["websocket", "polling"] });
 
 io.on("connection", (client) => {
   console.log("socket connected");

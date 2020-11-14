@@ -12,9 +12,11 @@ const initializeGame = (sio, socket) => {
   console.log("hi");
 };
 
-function createNewGame() {
+function createNewGame(gameId) {
+  console.log(gameId);
   this.emit("createNewGame", { gameId: gameId, mySocketId: this.id });
   console.log("hi create new game");
   this.join(gameId);
 }
+
 exports.initializeGame = initializeGame;
