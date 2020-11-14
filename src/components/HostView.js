@@ -29,8 +29,6 @@ export const HostView = (props) => {
 
   const code = uid(6);
 
-  //socket.emit("createNewGame", code);
-
   return (
     <div>
       <TopHeader />
