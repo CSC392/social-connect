@@ -29,7 +29,7 @@ export const HostView = (props) => {
 
   const code = uid(6);
 
-  socket.emit("createNewGame", code);
+  //socket.emit("createNewGame", code);
 
   return (
     <div>
@@ -79,7 +79,7 @@ export const HostView = (props) => {
           className={classes.hostButton}
           disabled={!(gameSelection && selectedGameData[0].isDone)}
           onClick={() => {
-            // socket.emit("createNewGame", code);
+            socket.emit("createNewGame", code);
           }}
         >
           <Link
