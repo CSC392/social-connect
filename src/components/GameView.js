@@ -3,7 +3,13 @@ import Chessboardjsx from "chessboardjsx";
 import { TopHeader } from "./TopHeader";
 import { PageNameHeader } from "./PageNameHeader";
 import Chess from "chess.js";
-import { Button, Dialog, DialogTitle, makeStyles } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  makeStyles,
+  Box,
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   playButton: {
@@ -16,13 +22,32 @@ const useStyles = makeStyles({
   },
 });
 
+const playerBox = {
+  display: "flex",
+  borderRadius: 16,
+  borderColor: "black",
+  m: 10,
+  border: 5,
+  style: { width: "15rem", height: "5rem" },
+};
+
+const iconBox = {
+  borderRadius: "50%",
+  borderColor: "black",
+  m: 2.5,
+  border: 5,
+  style: { width: "2.5rem", height: "2.5rem" },
+};
+
 export const GameView = (props) => {
   const [chess, setChess] = useState(null);
   const [gameOver, setGameOver] = useState({
     gameOver: false,
     gameOverType: "",
   });
-  const [player, setPlayer] = useState("white");
+
+  const [player, setPlayer] = useState("White");
+  const [turn, setTurn] = useState("White");
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
@@ -35,7 +60,7 @@ export const GameView = (props) => {
   });
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
-    // see if the move is legal
+    // check legal move
     let move = chess.move({
       from: sourceSquare,
       to: targetSquare,
@@ -44,11 +69,13 @@ export const GameView = (props) => {
 
     // illegal move
     if (move === null) return;
+
+    // end of game check
     const checkmate = chess.in_checkmate();
     const stalemate = chess.in_stalemate();
     const threefoldRepetition = chess.in_threefold_repetition();
     const insufficientMaterial = chess.insufficient_material();
-    chess.turn() === "w" ? setWinner("Black") : setWinner("White");
+
     if (checkmate) {
       setGameOver({ gameOver: true, gameOverType: "checkmate" });
     } else if (stalemate) {
@@ -63,6 +90,9 @@ export const GameView = (props) => {
     setGameState({
       fen: chess.fen(),
     });
+
+    chess.turn() === "w" ? setTurn("White") : setTurn("Black");
+    chess.turn() === "w" ? setWinner("Black") : setWinner("White");
   };
 
   const isDone =
@@ -71,12 +101,27 @@ export const GameView = (props) => {
   return (
     <div>
       <TopHeader />
+
       <PageNameHeader title="Chess" onClick={props.goBack}></PageNameHeader>
-      <Chessboardjsx
-        position={gameState.fen}
-        onDrop={onDrop}
-        orientation={player}
-      />
+
+      <Box display="flex" p={1}>
+        <Chessboardjsx
+          position={gameState.fen}
+          onDrop={onDrop}
+          orientation={player}
+        />
+        <div>
+          <Box bgcolor={turn === "White" ? "#8474BE" : "white"} {...playerBox}>
+            <Box bgcolor="white" {...iconBox} />
+            <h1 style={{ textAlign: "center" }}>{props.playerOne}</h1>
+          </Box>
+          <Box bgcolor={turn === "Black" ? "#8474BE" : "white"} {...playerBox}>
+            <Box bgcolor="black" {...iconBox} />
+            <h1 style={{ textAlign: "center" }}>Player 2</h1>
+          </Box>
+        </div>
+      </Box>
+
       {gameOver.gameOver && (
         <Dialog open={true}>
           <DialogTitle>
@@ -87,8 +132,8 @@ export const GameView = (props) => {
           </Button>
         </Dialog>
       )}
-      <button onClick={() => setPlayer("white")}>White POV</button>
-      <button onClick={() => setPlayer("black")}>Black POV</button>
+      <button onClick={() => setPlayer("White")}>White POV</button>
+      <button onClick={() => setPlayer("Black")}>Black POV</button>
     </div>
   );
 };
