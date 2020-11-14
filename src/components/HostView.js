@@ -13,6 +13,8 @@ import { imagesData } from "../assets/imagesData";
 import { HostViewStyles } from "../styles/HostViewStyles";
 import { uid } from "uid";
 
+const socket = require("../connection/socket").socket;
+
 export const HostView = (props) => {
   const classes = HostViewStyles({});
   const [disable, setDisable] = useState(false);
@@ -26,6 +28,8 @@ export const HostView = (props) => {
   );
 
   const code = uid(6);
+
+  socket.emit("createNewGame", code);
 
   return (
     <div>
@@ -74,6 +78,9 @@ export const HostView = (props) => {
         <Button
           className={classes.hostButton}
           disabled={!(gameSelection && selectedGameData[0].isDone)}
+          onClick={() => {
+            // socket.emit("createNewGame", code);
+          }}
         >
           <Link
             to={{
