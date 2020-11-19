@@ -17,12 +17,7 @@ export const GamePage = (props) => {
     setHistory(history);
   };
 
-  const {
-    gameCode,
-    gameSelection,
-    gameSettings,
-    playerOne,
-  } = props.location.state;
+  const { gameCode } = props.location.state;
 
   switch (view) {
     case "lobby":
@@ -31,22 +26,12 @@ export const GamePage = (props) => {
           history={history}
           goNext={goNext}
           goBack={goBack}
-          gameSelection={gameSelection}
           gameCode={gameCode}
-          gameSettings={gameSettings}
-          playerOne={playerOne}
         />
       );
 
     case "game":
-      return (
-        <GameView
-          history={history}
-          goNext={goNext}
-          goBack={goBack}
-          playerOne={playerOne}
-        />
-      );
+      return <GameView history={history} goNext={goNext} goBack={goBack} />;
 
     default:
       return <div> Error </div>;
