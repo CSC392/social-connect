@@ -10,40 +10,28 @@ const init = (sio, socket) => {
   // console.log("games: " + gamesInSession);
   gameSocket.on("createNewGame", host);
   gameSocket.on("joinGame", joinGame);
+  gameSocket.on("host username", hostUsername);
 };
 
-function host(gameId) {
-  this.emit("createNewGame", { gameId: gameId, mySocketId: this.id });
-  console.log("Hosted game " + gameId);
+function hostUsername(hostData) {
+  const { gameId, username } = hostData;
+  console.log("sent host username", username);
+  this.to(gameId).emit("host username", username);
+}
+
+function host(hostData) {
+  const { gameId, username } = hostData;
+  this.emit("host username", username);
+  console.log("Hosted game ", gameId, username);
   this.join(gameId);
 }
 
-function joinGame(data) {
-  const sock = this;
-
-  const { gameId, userName } = data;
-
-  const room = io.sockets.adapter.rooms[gameId];
-
-  if (room === undefined) {
-    this.emit("status", "This game session does not exist.");
-    return;
-  }
-  if (room.length < 2) {
-    data.mySocketId = sock.id;
-
-    console.log("gameId joining.....", gameId);
-    sock.join(gameId);
-
-    console.log(room.length);
-
-    if (room.length === 2) {
-      io.sockets.in(gameId).emit("start game", userName);
-    }
-
-    io.sockets.in(gameId).emit("playerJoinedRoom", data);
-  } else {
-    this.emit("status", "There are already 2 people playing in this room.");
-  }
+function joinGame(joinData) {
+  const { gameId, username } = joinData;
+  console.log("Joined game ", gameId, username);
+  this.emit("join username", username);
+  this.join(gameId);
+  this.to(gameId).emit("join username", username);
+  this.to(gameId).emit("get host username");
 }
 exports.init = init;
