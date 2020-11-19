@@ -17,8 +17,6 @@ io.on("connection", (client) => {
     console.log(client.id + " disconnected");
     clients.pop(client.id);
   });
-
-  console.log("clients: " + clients);
 });
 
 server.listen(process.env.PORT || 5000);

@@ -11,6 +11,8 @@ import { TopHeader } from "./TopHeader";
 import { Link } from "react-router-dom";
 import { MenuViewStyles } from "../styles/MenuViewStyles";
 
+const socket = require("../connection/socket").socket;
+
 export const MenuView = (props) => {
   const classes = MenuViewStyles({});
   const [showJoinMenu, setShowJoinMenu] = useState(false);
@@ -23,6 +25,10 @@ export const MenuView = (props) => {
   };
   const validUsername = props.username ? false : true;
   const validJoinCode = joinCode ? false : true;
+  const joinData = {
+    gameId: joinCode,
+    username: props.username,
+  };
   return (
     <div>
       <TopHeader />
@@ -89,8 +95,23 @@ export const MenuView = (props) => {
               <CloseIcon />
             </IconButton>
           </DialogTitle>
-          <Button disabled={validJoinCode} className={classes.joinMenuButton}>
-            <Link to="/play/game">Join Game</Link>
+          <Button
+            disabled={validJoinCode}
+            className={classes.joinMenuButton}
+            onClick={() => {
+              socket.emit("joinGame", joinData);
+            }}
+          >
+            <Link
+              to={{
+                pathname: `/play/${joinCode}`,
+                state: {
+                  gameCode: joinCode,
+                },
+              }}
+            >
+              Join Game
+            </Link>
           </Button>
         </Dialog>
       </div>
