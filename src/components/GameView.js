@@ -3,6 +3,8 @@ import Chessboardjsx from "chessboardjsx";
 import { TopHeader } from "./TopHeader";
 import { PageNameHeader } from "./PageNameHeader";
 import Chess from "chess.js";
+import { ChatBox } from "react-chatbox-component";
+import "react-chatbox-component/dist/style.css";
 import {
   Button,
   Dialog,
@@ -27,7 +29,7 @@ const playerBox = {
   borderRadius: 16,
   borderColor: "black",
   m: 10,
-  border: 5,
+  border: 1,
   style: { width: "15rem", height: "5rem" },
 };
 
@@ -35,9 +37,37 @@ const iconBox = {
   borderRadius: "50%",
   borderColor: "black",
   m: 2.5,
-  border: 5,
+  border: 2,
   style: { width: "2.5rem", height: "2.5rem" },
 };
+
+const messages = [
+  //These are default messages for visual testing purposes.
+  {
+    text: "Hi",
+    id: "1",
+    sender: {
+      name: "Player 1",
+      uid: "user1",
+    },
+  },
+  {
+    text: "Hello!",
+    id: "2",
+    sender: {
+      name: "Player 2",
+      uid: "user2",
+    },
+  },
+  {
+    text: "Thank you for connecting with me!",
+    id: "1",
+    sender: {
+      name: "Player 1",
+      uid: "user1",
+    },
+  },
+];
 
 export const GameView = (props) => {
   const [chess, setChess] = useState(null);
@@ -120,6 +150,8 @@ export const GameView = (props) => {
             <h1 style={{ textAlign: "center" }}>Player 2</h1>
           </Box>
         </div>
+        <div className="chat-header"></div>
+        <ChatBox messages={messages} />
       </Box>
 
       {gameOver.gameOver && (
