@@ -89,6 +89,7 @@ export const HostView = (props) => {
               pathname: `/play/${code}`,
               state: {
                 gameCode: code,
+                role: "host",
               },
             }}
             className={classes.link}

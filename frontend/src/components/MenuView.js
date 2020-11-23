@@ -17,6 +17,7 @@ export const MenuView = (props) => {
   const classes = MenuViewStyles({});
   const [showJoinMenu, setShowJoinMenu] = useState(false);
   const [joinCode, setJoinCode] = useState("");
+
   const handleChange = (event) => {
     props.setUsername(event.target.value);
   };
@@ -29,6 +30,7 @@ export const MenuView = (props) => {
     gameId: joinCode,
     username: props.username,
   };
+
   return (
     <div>
       <TopHeader />
@@ -48,20 +50,12 @@ export const MenuView = (props) => {
           className={classes.hostButton}
           disabled={validUsername}
           onClick={() => {
-            props.goNext("menu", "host");
+            props.goNext("menu", "host"); // go to next view and set history
           }}
         >
           Host Game
         </Button>
-        <Button
-          className={classes.browseButton}
-          disabled={validUsername}
-          onClick={() => {
-            props.goNext("menu", "browse");
-          }}
-        >
-          Browse Game
-        </Button>
+
         <Button
           className={classes.joinButton}
           disabled={validUsername}
@@ -71,6 +65,7 @@ export const MenuView = (props) => {
         >
           Join Game
         </Button>
+
         <Dialog
           open={showJoinMenu}
           classes={{ paper: classes.joinMenu }}
@@ -95,6 +90,7 @@ export const MenuView = (props) => {
               <CloseIcon />
             </IconButton>
           </DialogTitle>
+
           <Button
             disabled={validJoinCode}
             className={classes.joinMenuButton}
@@ -107,6 +103,7 @@ export const MenuView = (props) => {
                 pathname: `/play/${joinCode}`,
                 state: {
                   gameCode: joinCode,
+                  role: "join",
                 },
               }}
             >

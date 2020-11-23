@@ -8,7 +8,7 @@ export const GamePage = (props) => {
   const [history, setHistory] = useState([]);
   const [hostUsername, setHostUsername] = useState("");
   const [joinUsername, setJoinUsername] = useState("");
-  const { gameCode } = props.location.state;
+  const { gameCode, role } = props.location.state;
 
   const hostData = {
     gameId: gameCode,
@@ -16,21 +16,16 @@ export const GamePage = (props) => {
   };
 
   socket.on("host username", setUsernameForHost);
-
   function setUsernameForHost(hostName) {
-    console.log("host name", hostName);
     setHostUsername(hostName);
   }
 
   socket.on("join username", setUsernameForJoin);
-
   function setUsernameForJoin(joinName) {
-    console.log("join name", joinName);
     setJoinUsername(joinName);
   }
 
   socket.on("get host username", getUsernameForHost);
-
   function getUsernameForHost() {
     socket.emit("host username", hostData);
   }
@@ -70,6 +65,7 @@ export const GamePage = (props) => {
           hostName={hostUsername}
           joinName={joinUsername}
           socket={socket}
+          role={role}
         />
       );
 
