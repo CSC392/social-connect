@@ -4,7 +4,6 @@ let gameSocket;
 const init = (sio, socket) => {
   io = sio;
   gameSocket = socket;
-  // console.log("games: " + gamesInSession);
   gameSocket.on("createNewGame", host);
   gameSocket.on("joinGame", joinGame);
   gameSocket.on("host username", hostUsername);
