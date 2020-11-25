@@ -79,17 +79,22 @@ export const GameView = (props) => {
   }
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
-    // check legal move
-    let newMove = {
+    // build move parameters
+    let moveOptions = {
       from: sourceSquare,
       to: targetSquare,
       promotion: "q", // always promote to a queen for example simplicity
     };
 
-    // illegal move
-    if (chess.move(newMove) === null) return;
+    // make move with move parameters
+    let newMove = chess.move(moveOptions);
 
-    // if legal move
+    // check if legal move
+    if (newMove === null) return;
+
+    // prevent opposing player from playing as player
+    if (props.role === "host" && newMove.color === "b") return;
+    if (props.role === "join" && newMove.color === "w") return;
 
     // client side move
     setGameState({
