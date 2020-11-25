@@ -1,17 +1,15 @@
 let io;
 let gameSocket;
-let gamesInSession = [];
 
 const init = (sio, socket) => {
   io = sio;
   gameSocket = socket;
-
-  gamesInSession.push(gameSocket);
   // console.log("games: " + gamesInSession);
   gameSocket.on("createNewGame", host);
   gameSocket.on("joinGame", joinGame);
   gameSocket.on("host username", hostUsername);
   gameSocket.on("move", updateGameState);
+  gameSocket.on("validate join code", validateJoinCode);
 };
 
 function hostUsername(data) {
@@ -27,10 +25,24 @@ function host(data) {
   this.join(gameId);
 }
 
+function validateJoinCode(gameId) {
+  const room = io.sockets.adapter.rooms[gameId];
+  if (room === undefined) {
+    this.emit("status", 1);
+    return;
+  } else if (room.length >= 2) {
+    this.emit("status", 2);
+    return;
+  } else {
+    this.emit("status", 0);
+    return;
+  }
+}
+
 function joinGame(data) {
   const { gameId, username } = data;
-  console.log("Joined game ", gameId, username);
   this.emit("join username", username);
+  console.log(username, "joined game", gameId);
   this.join(gameId);
   this.to(gameId).emit("join username", username);
   this.to(gameId).emit("get host username");
