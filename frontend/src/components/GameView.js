@@ -59,18 +59,6 @@ export const GameView = (props) => {
     fen: "start",
   });
 
-  const socket = props.socket;
-  const gameCode = props.gameCode;
-
-  socket.on("updateGameState", updateGameState);
-
-  function updateGameState(fen) {
-    console.log("client: updateGameState");
-    setGameState({
-      fen: fen,
-    });
-  }
-
   const onDrop = ({ sourceSquare, targetSquare }) => {
     // check legal move
     let move = chess.move({
@@ -99,21 +87,12 @@ export const GameView = (props) => {
     } else {
       setGameOver({ gameOver: false, gameOverType: "" });
     }
-
-    // setGameState({
-    //   fen: chess.fen(),
-    // });
-
-    // if legal move
-    console.log("client: move");
-    const data = {
+    setGameState({
       fen: chess.fen(),
-      gameId: gameCode,
-    };
-    socket.emit("move", data);
+    });
 
     chess.turn() === "w" ? setTurn("White") : setTurn("Black");
-    // chess.turn() === "w" ? setWinner("Black") : setWinner("White");
+    chess.turn() === "w" ? setWinner("Black") : setWinner("White");
   };
 
   const isDone =
