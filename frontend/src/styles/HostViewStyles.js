@@ -48,5 +48,9 @@ export const HostViewStyles = makeStyles({
   link: {
     textDecoration: "none",
     color: "black",
+    cursor: "default",
+    "&:active": {
+      cursor: "pointer",
+    },
   },
 });
