@@ -77,25 +77,30 @@ export const HostView = (props) => {
             Private
           </Button>
         </ButtonGroup>
-        <Button
-          className={classes.hostButton}
-          disabled={!(gameSelection && selectedGameData[0].isDone)}
-          onClick={() => {
-            socket.emit("createNewGame", hostData);
+        <Link
+          to={{
+            pathname: `/play/${code}`,
+            state: {
+              gameCode: code,
+            },
+          }}
+          className={classes.link}
+          onClick={(e) => {
+            if (!(gameSelection && selectedGameData[0].isDone)) {
+              e.preventDefault();
+            }
           }}
         >
-          <Link
-            to={{
-              pathname: `/play/${code}`,
-              state: {
-                gameCode: code,
-              },
+          <Button
+            className={classes.hostButton}
+            disabled={!(gameSelection && selectedGameData[0].isDone)}
+            onClick={() => {
+              socket.emit("createNewGame", hostData);
             }}
-            className={classes.link}
           >
             Host
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
     </div>
   );
