@@ -13,6 +13,7 @@ const init = (sio, socket) => {
   gameSocket.on("host username", hostUsername);
   gameSocket.on("move", updateGameState);
   gameSocket.on("game over", endGame);
+  gameSocket.on("message", transmitMessage);
 };
 
 function host(data) {
@@ -44,6 +45,11 @@ function updateGameState(data) {
 function endGame(data) {
   const { winner, gameOverType, gameId } = data;
   this.to(gameId).emit("endGame", winner, gameOverType);
+}
+
+function transmitMessage(data) {
+  const { player, message, gameId } = data;
+  this.to(gameId).emit("message", player, message);
 }
 
 exports.init = init;
