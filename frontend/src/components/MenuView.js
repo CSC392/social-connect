@@ -17,7 +17,7 @@ export const MenuView = (props) => {
   const classes = MenuViewStyles({});
   const [showJoinMenu, setShowJoinMenu] = useState(false);
   const [joinCode, setJoinCode] = useState("");
-  const [joinValidate, setJoinValidate] = useState(0);
+  const [joinValidate, setJoinValidate] = useState(1);
   const [helperText, setHelperText] = useState("");
   const validUsername = props.username ? false : true;
   const validJoinCode = joinCode ? false : true;
@@ -117,25 +117,30 @@ export const MenuView = (props) => {
               <CloseIcon />
             </IconButton>
           </DialogTitle>
-          <Button
-            disabled={validJoinCode || joinValidate !== 0}
-            className={classes.joinMenuButton}
-            onClick={() => {
-              socket.emit("joinGame", joinData);
+          <Link
+            to={{
+              pathname: `/play/${joinCode}`,
+              state: {
+                gameCode: joinCode,
+              },
+            }}
+            className={classes.link}
+            onClick={(e) => {
+              if (validJoinCode || joinValidate !== 0) {
+                e.preventDefault();
+              }
             }}
           >
-            <Link
-              to={{
-                pathname: `/play/${joinCode}`,
-                state: {
-                  gameCode: joinCode,
-                },
+            <Button
+              disabled={validJoinCode || joinValidate !== 0}
+              className={classes.joinMenuButton}
+              onClick={() => {
+                socket.emit("joinGame", joinData);
               }}
-              className={classes.link}
             >
               Join Game
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Dialog>
       </div>
     </div>
