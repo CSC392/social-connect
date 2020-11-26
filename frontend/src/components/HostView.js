@@ -28,6 +28,10 @@ export const HostView = (props) => {
   );
 
   const code = uid(6);
+  const hostData = {
+    gameId: code,
+    username: props.username,
+  };
 
   return (
     <div>
@@ -77,17 +81,14 @@ export const HostView = (props) => {
           className={classes.hostButton}
           disabled={!(gameSelection && selectedGameData[0].isDone)}
           onClick={() => {
-            socket.emit("createNewGame", code);
+            socket.emit("createNewGame", hostData);
           }}
         >
           <Link
             to={{
               pathname: `/play/${code}`,
               state: {
-                gameSelection: gameSelection,
                 gameCode: code,
-                gameSettings: gameSettings,
-                playerOne: props.username,
               },
             }}
             className={classes.link}
