@@ -47,5 +47,6 @@ export const HostViewStyles = makeStyles({
   },
   link: {
     textDecoration: "none",
+    color: "black",
   },
 });

@@ -131,6 +131,7 @@ export const MenuView = (props) => {
                   gameCode: joinCode,
                 },
               }}
+              className={classes.link}
             >
               Join Game
             </Link>
