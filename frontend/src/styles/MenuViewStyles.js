@@ -67,4 +67,8 @@ export const MenuViewStyles = makeStyles({
   joinMenu: {
     overflowY: "unset",
   },
+  link: {
+    textDecoration: "none",
+    color: "black",
+  },
 });
