@@ -52,6 +52,7 @@ export const GamePage = (props) => {
           hostName={hostUsername}
           joinName={joinUsername}
           socket={socket}
+          role={role}
         />
       );
 

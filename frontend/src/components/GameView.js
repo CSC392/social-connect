@@ -84,8 +84,13 @@ export const GameView = (props) => {
 
   socket.on("message", receiveMessage);
   function receiveMessage(player, message) {
-    // TODO: add to chat log
     console.log(player, message);
+
+    // TODO: add to chat log
+    console.log(messageLog);
+    messageLog.push({ player: player, message: message });
+    setMessageLog(messageLog);
+    console.log(messageLog);
   }
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
@@ -158,8 +163,13 @@ export const GameView = (props) => {
     gameOver.gameOverType === "checkmate" ? `${winner} wins` : "Draw";
 
   const sendMessage = (player, message) => {
-    // TODO: add to chat log
     console.log(player, message);
+
+    // TODO: add to chat log
+    console.log(messageLog);
+    messageLog.push({ player: player, message: message });
+    setMessageLog(messageLog);
+    console.log(messageLog);
 
     const data = {
       player: player,
@@ -168,6 +178,15 @@ export const GameView = (props) => {
     };
     socket.emit("message", data);
   };
+
+  const chatlog = [];
+  for (let message of messageLog) {
+    chatlog.push(
+      <li>
+        "{message.player}" said "{message.message}"
+      </li>
+    );
+  }
 
   return (
     <div>
@@ -211,6 +230,9 @@ export const GameView = (props) => {
             >
               Send
             </Button>
+            <div>
+              <ul>{chatlog}</ul>
+            </div>
           </div>
         </div>
       </Box>
