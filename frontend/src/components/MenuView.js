@@ -17,13 +17,8 @@ export const MenuView = (props) => {
   const classes = MenuViewStyles({});
   const [showJoinMenu, setShowJoinMenu] = useState(false);
   const [joinCode, setJoinCode] = useState("");
-
-  const handleChange = (event) => {
-    props.setUsername(event.target.value);
-  };
-  const handleJoinChange = (event) => {
-    setJoinCode(event.target.value);
-  };
+  const [joinValidate, setJoinValidate] = useState(1);
+  const [helperText, setHelperText] = useState("");
   const validUsername = props.username ? false : true;
   const validJoinCode = joinCode ? false : true;
   const joinData = {
@@ -31,6 +26,30 @@ export const MenuView = (props) => {
     username: props.username,
   };
 
+  const handleChange = (event) => {
+    props.setUsername(event.target.value);
+  };
+
+  const handleJoinChange = (event) => {
+    setJoinCode(event.target.value);
+    socket.emit("validate join code", event.target.value);
+  };
+
+  socket.on("status", joinError);
+
+  function joinError(errorCode) {
+    if (errorCode === 1) {
+      setJoinValidate(1);
+      setHelperText("This room doesn't exist");
+    } else if (errorCode === 2) {
+      setJoinValidate(2);
+      setHelperText("This room is full");
+    } else {
+      setHelperText("");
+      setJoinValidate(0);
+    }
+  }
+  
   return (
     <div>
       <TopHeader />
@@ -78,7 +97,8 @@ export const MenuView = (props) => {
               variant="outlined"
               label="Enter Game Code"
               onChange={handleJoinChange}
-              error={validJoinCode}
+              error={validJoinCode || joinValidate !== 0}
+              helperText={helperText}
             ></TextField>
             <IconButton
               className={classes.closeButton}
@@ -90,26 +110,31 @@ export const MenuView = (props) => {
               <CloseIcon />
             </IconButton>
           </DialogTitle>
-
-          <Button
-            disabled={validJoinCode}
-            className={classes.joinMenuButton}
-            onClick={() => {
-              socket.emit("joinGame", joinData);
+          <Link
+            to={{
+              pathname: `/play/${joinCode}`,
+              state: {
+                gameCode: joinCode,
+                role: "join",
+              },
+            }}
+            className={classes.link}
+            onClick={(e) => {
+              if (validJoinCode || joinValidate !== 0) {
+                e.preventDefault();
+              }
             }}
           >
-            <Link
-              to={{
-                pathname: `/play/${joinCode}`,
-                state: {
-                  gameCode: joinCode,
-                  role: "join",
-                },
+            <Button
+              disabled={validJoinCode || joinValidate !== 0}
+              className={classes.joinMenuButton}
+              onClick={() => {
+                socket.emit("joinGame", joinData);
               }}
             >
               Join Game
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Dialog>
       </div>
     </div>

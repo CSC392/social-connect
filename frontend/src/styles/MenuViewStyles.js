@@ -52,6 +52,7 @@ export const MenuViewStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#8474BE",
     },
+    padding: "10px 78px",
   },
   closeButton: {
     position: "absolute",
@@ -66,5 +67,13 @@ export const MenuViewStyles = makeStyles({
   },
   joinMenu: {
     overflowY: "unset",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
+    cursor: "default",
+    "&:active": {
+      cursor: "pointer",
+    },
   },
 });

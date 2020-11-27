@@ -78,6 +78,7 @@ export const GameView = (props) => {
     setGameOver({ gameOver: true, gameOverType: gameOverType });
   }
 
+
   const onDrop = ({ sourceSquare, targetSquare }) => {
     // build move parameters
     let moveOptions = {
