@@ -25,28 +25,13 @@ export const PlayPage = () => {
         <MenuView
           username={username}
           setUsername={setUsername}
-          history={history}
           goNext={goNext}
           goBack={goBack}
         />
       );
 
     case "host":
-      return (
-        <HostView
-          username={username}
-          setUsername={setUsername}
-          history={history}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
-
-    case "browse":
-      return <div>browse</div>;
-
-    case "join":
-      return <div>join</div>;
+      return <HostView username={username} goNext={goNext} goBack={goBack} />;
 
     default:
       return <div> Error </div>;

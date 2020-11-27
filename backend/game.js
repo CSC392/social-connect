@@ -8,6 +8,8 @@ const init = (sio, socket) => {
   gameSocket.on("joinGame", joinGame);
   gameSocket.on("host username", hostUsername);
   gameSocket.on("validate join code", validateJoinCode);
+  gameSocket.on("move", updateGameState);
+  gameSocket.on("game over", endGame);
 };
 
 function hostUsername(hostData) {
@@ -18,8 +20,8 @@ function hostUsername(hostData) {
 
 function host(hostData) {
   const { gameId, username } = hostData;
-  this.emit("host username", username);
   console.log("Hosted game ", gameId, username);
+  this.emit("host username", username);
   this.join(gameId);
 }
 
@@ -44,5 +46,15 @@ function joinGame(data) {
   this.join(gameId);
   this.to(gameId).emit("join username", username);
   this.to(gameId).emit("get host username");
+}
+
+function updateGameState(data) {
+  const { newMove, gameId } = data;
+  this.to(gameId).emit("updateGameState", newMove);
+}
+
+function endGame(data) {
+  const { winner, gameOverType, gameId } = data;
+  this.to(gameId).emit("endGame", winner, gameOverType);
 }
 exports.init = init;

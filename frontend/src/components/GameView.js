@@ -46,8 +46,7 @@ export const GameView = (props) => {
     gameOverType: "",
   });
 
-  const [player, setPlayer] = useState("White");
-  const [turn, setTurn] = useState("White");
+  const [turn, setTurn] = useState("w");
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
@@ -59,40 +58,91 @@ export const GameView = (props) => {
     fen: "start",
   });
 
+  const socket = props.socket;
+  const gameCode = props.gameCode;
+
+  socket.on("updateGameState", updateGameState);
+  function updateGameState(newMove) {
+    if (chess != null) {
+      chess.move(newMove);
+      setGameState({
+        fen: chess.fen(),
+      });
+      setTurn(chess.turn());
+    }
+  }
+
+  socket.on("endGame", endGame);
+  function endGame(winner, gameOverType) {
+    setWinner(winner);
+    setGameOver({ gameOver: true, gameOverType: gameOverType });
+  }
+
+
   const onDrop = ({ sourceSquare, targetSquare }) => {
-    // check legal move
-    let move = chess.move({
+    // build move parameters
+    let moveOptions = {
       from: sourceSquare,
       to: targetSquare,
       promotion: "q", // always promote to a queen for example simplicity
-    });
+    };
 
-    // illegal move
-    if (move === null) return;
+    // make move with move parameters
+    let newMove = chess.move(moveOptions);
 
-    // end of game check
-    const checkmate = chess.in_checkmate();
-    const stalemate = chess.in_stalemate();
-    const threefoldRepetition = chess.in_threefold_repetition();
-    const insufficientMaterial = chess.insufficient_material();
+    // check if legal move
+    if (newMove === null) return;
 
-    if (checkmate) {
-      setGameOver({ gameOver: true, gameOverType: "checkmate" });
-    } else if (stalemate) {
-      setGameOver({ gameOver: true, gameOverType: "stalemate" });
-    } else if (threefoldRepetition) {
-      setGameOver({ gameOver: true, gameOverType: "threefold repetition" });
-    } else if (insufficientMaterial) {
-      setGameOver({ gameOver: true, gameOverType: "insufficient material" });
-    } else {
-      setGameOver({ gameOver: false, gameOverType: "" });
-    }
+    // prevent opposing player from playing as player
+    if (props.role === "host" && newMove.color === "b") return;
+    if (props.role === "join" && newMove.color === "w") return;
+
+    // client side move
     setGameState({
       fen: chess.fen(),
     });
+    setTurn(chess.turn());
 
-    chess.turn() === "w" ? setTurn("White") : setTurn("Black");
+    // server side move
+    const data = {
+      newMove: newMove,
+      gameId: gameCode,
+    };
+    socket.emit("move", data);
+
     chess.turn() === "w" ? setWinner("Black") : setWinner("White");
+
+    // end of game check
+    if (
+      chess.in_checkmate() ||
+      chess.in_stalemate() ||
+      chess.in_threefold_repetition() ||
+      chess.insufficient_material()
+    ) {
+      var gameOverType;
+      if (chess.in_checkmate()) {
+        gameOverType = "checkmate";
+      } else if (chess.in_stalemate()) {
+        gameOverType = "stalemate";
+      } else if (chess.in_threefold_repetition()) {
+        gameOverType = "threefold repetition";
+      } else if (chess.insufficient_material()) {
+        gameOverType = "insufficient material";
+      }
+
+      // client side game over
+      setGameOver({ gameOver: true, gameOverType: gameOverType });
+
+      // server side game over
+      const data = {
+        winner: winner,
+        gameOverType: gameOverType,
+        gameId: gameCode,
+      };
+      socket.emit("game over", data);
+    } else {
+      setGameOver({ gameOver: false, gameOverType: "" });
+    }
   };
 
   const isDone =
@@ -108,14 +158,14 @@ export const GameView = (props) => {
         <Chessboardjsx
           position={gameState.fen}
           onDrop={onDrop}
-          orientation={player}
+          orientation={props.role === "host" ? "White" : "Black"}
         />
         <div>
-          <Box bgcolor={turn === "White" ? "#8474BE" : "white"} {...playerBox}>
+          <Box bgcolor={turn === "w" ? "#8474BE" : "white"} {...playerBox}>
             <Box bgcolor="white" {...iconBox} />
             <h1 style={{ textAlign: "center" }}>{props.hostName}</h1>
           </Box>
-          <Box bgcolor={turn === "Black" ? "#8474BE" : "white"} {...playerBox}>
+          <Box bgcolor={turn === "b" ? "#8474BE" : "white"} {...playerBox}>
             <Box bgcolor="black" {...iconBox} />
             <h1 style={{ textAlign: "center" }}>{props.joinName}</h1>
           </Box>
@@ -132,8 +182,6 @@ export const GameView = (props) => {
           </Button>
         </Dialog>
       )}
-      <button onClick={() => setPlayer("White")}>White POV</button>
-      <button onClick={() => setPlayer("Black")}>Black POV</button>
     </div>
   );
 };
