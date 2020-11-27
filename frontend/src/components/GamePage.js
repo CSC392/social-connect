@@ -51,6 +51,7 @@ export const GamePage = (props) => {
           gameCode={gameCode}
           hostName={hostUsername}
           joinName={joinUsername}
+          socket={socket}
         />
       );
 
@@ -60,11 +61,11 @@ export const GamePage = (props) => {
           history={history}
           goNext={goNext}
           goBack={goBack}
+          gameCode={gameCode}
           hostName={hostUsername}
           joinName={joinUsername}
           socket={socket}
           role={role}
-
         />
       );
 
