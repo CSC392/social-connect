@@ -10,6 +10,7 @@ import {
   makeStyles,
   Box,
 } from "@material-ui/core";
+import { MuiChat, ChatController } from "chat-ui-react";
 
 const useStyles = makeStyles({
   playButton: {
@@ -49,6 +50,20 @@ export const GameView = (props) => {
   const [turn, setTurn] = useState("w");
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
+  const [chatCtl] = React.useState(new ChatController());
+
+  React.useMemo(async () => {
+    //Chat content is displayed using ChatController
+    await chatCtl.addMessage({
+      type: "text",
+      content: `Hello, What's your name.`,
+      self: false,
+    });
+    const name = await chatCtl.setActionRequest({
+      type: "text",
+      always: true,
+    });
+  }, [chatCtl]);
 
   useEffect(() => {
     setChess(new Chess());
@@ -77,7 +92,6 @@ export const GameView = (props) => {
     setWinner(winner);
     setGameOver({ gameOver: true, gameOverType: gameOverType });
   }
-
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
     // build move parameters
@@ -154,7 +168,7 @@ export const GameView = (props) => {
 
       <PageNameHeader title="Chess" onClick={props.goBack}></PageNameHeader>
 
-      <Box display="flex" p={1}>
+      <Box display="flex" p={1} style={{ height: "550px" }}>
         <Chessboardjsx
           position={gameState.fen}
           onDrop={onDrop}
@@ -170,6 +184,7 @@ export const GameView = (props) => {
             <h1 style={{ textAlign: "center" }}>{props.joinName}</h1>
           </Box>
         </div>
+        <MuiChat chatController={chatCtl}></MuiChat>
       </Box>
 
       {gameOver.gameOver && (
