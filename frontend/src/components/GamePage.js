@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LobbyView } from "./LobbyView";
 import { GameView } from "./GameView";
+
 const socket = require("../connection/socket").socket;
 
 export const GamePage = (props) => {
@@ -15,17 +16,21 @@ export const GamePage = (props) => {
     username: hostUsername,
   };
 
-  socket.on("host username", setUsernameForHost);
+  useEffect(() => {
+    socket.removeAllListeners();
+    socket.on("host username", setUsernameForHost);
+    socket.on("join username", setUsernameForJoin);
+  }, []);
+  socket.on("get host username", getUsernameForHost);
+
   function setUsernameForHost(hostName) {
     setHostUsername(hostName);
   }
 
-  socket.on("join username", setUsernameForJoin);
   function setUsernameForJoin(joinName) {
     setJoinUsername(joinName);
   }
 
-  socket.on("get host username", getUsernameForHost);
   function getUsernameForHost() {
     socket.emit("host username", hostData);
   }

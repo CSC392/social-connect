@@ -40,7 +40,7 @@ const iconBox = {
 };
 
 export const GameView = (props) => {
-  const [chess, setChess] = useState(null);
+  const [chess, setChess] = useState(new Chess());
   const [gameOver, setGameOver] = useState({
     gameOver: false,
     gameOverType: "",
@@ -50,34 +50,31 @@ export const GameView = (props) => {
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
+  const socket = props.socket;
+  const gameCode = props.gameCode;
+
   useEffect(() => {
-    setChess(new Chess());
+    socket.removeAllListeners();
+    socket.on("updateGameState", updateGameState);
+    socket.on("endGame", endGame);
   }, []);
 
   const [gameState, setGameState] = useState({
     fen: "start",
   });
 
-  const socket = props.socket;
-  const gameCode = props.gameCode;
-
-  socket.on("updateGameState", updateGameState);
   function updateGameState(newMove) {
-    if (chess != null) {
-      chess.move(newMove);
-      setGameState({
-        fen: chess.fen(),
-      });
-      setTurn(chess.turn());
-    }
+    chess.move(newMove);
+    setGameState({
+      fen: chess.fen(),
+    });
+    setTurn(chess.turn());
   }
 
-  socket.on("endGame", endGame);
   function endGame(winner, gameOverType) {
     setWinner(winner);
     setGameOver({ gameOver: true, gameOverType: gameOverType });
   }
-
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
     // build move parameters

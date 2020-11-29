@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   TextField,
@@ -26,6 +26,11 @@ export const MenuView = (props) => {
     username: props.username,
   };
 
+  useEffect(() => {
+    socket.removeAllListeners();
+    socket.on("status", joinError);
+  }, []);
+
   const handleChange = (event) => {
     props.setUsername(event.target.value);
   };
@@ -34,8 +39,6 @@ export const MenuView = (props) => {
     setJoinCode(event.target.value);
     socket.emit("validate join code", event.target.value);
   };
-
-  socket.on("status", joinError);
 
   function joinError(errorCode) {
     if (errorCode === 1) {
@@ -49,7 +52,7 @@ export const MenuView = (props) => {
       setJoinValidate(0);
     }
   }
-  
+
   return (
     <div>
       <TopHeader />
