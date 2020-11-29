@@ -11,6 +11,7 @@ import {
   Box,
   TextField,
 } from "@material-ui/core";
+import { MuiChat, ChatController } from "chat-ui-react";
 
 const useStyles = makeStyles({
   playButton: {
@@ -20,6 +21,9 @@ const useStyles = makeStyles({
       backgroundColor: "#8474BE",
     },
     borderRadius: "0px",
+  },
+  boxContainer: {
+    height: "550px",
   },
 });
 
@@ -53,6 +57,16 @@ export const GameView = (props) => {
 
   const socket = props.socket;
   const gameCode = props.gameCode;
+
+  const [chatCtl] = React.useState(new ChatController());
+
+  React.useMemo(async () => {
+    //Chat content is displayed using ChatController
+    const name = await chatCtl.setActionRequest({
+      type: "text",
+      always: true,
+    });
+  }, [chatCtl]);
 
   useEffect(() => {
     socket.removeAllListeners();
@@ -173,7 +187,7 @@ export const GameView = (props) => {
 
       <PageNameHeader title="Chess" onClick={props.goBack}></PageNameHeader>
 
-      <Box display="flex" p={1}>
+      <Box display="flex" p={1} className={classes.boxContainer}>
         <Chessboardjsx
           position={gameState.fen}
           onDrop={onDrop}
@@ -188,7 +202,7 @@ export const GameView = (props) => {
             <Box bgcolor="black" {...iconBox} />
             <h1 style={{ textAlign: "center" }}>{props.joinName}</h1>
           </Box>
-          <div id="chatbox">
+          {/* <div id="chatbox">
             <TextField
               value={message}
               onChange={(event) => setMessage(event.target.value)}
@@ -209,8 +223,9 @@ export const GameView = (props) => {
             >
               Send
             </Button>
-          </div>
+          </div> */}
         </div>
+        <MuiChat chatController={chatCtl}></MuiChat>
       </Box>
 
       {gameOver.gameOver && (
