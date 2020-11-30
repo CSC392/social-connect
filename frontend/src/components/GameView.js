@@ -9,7 +9,6 @@ import {
   DialogTitle,
   makeStyles,
   Box,
-  TextField,
 } from "@material-ui/core";
 import { MuiChat, ChatController } from "chat-ui-react";
 
@@ -55,18 +54,9 @@ export const GameView = (props) => {
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
-  const socket = props.socket;
-  const gameCode = props.gameCode;
+  const { socket, gameCode } = props;
 
   const [chatCtl] = React.useState(new ChatController());
-
-  React.useMemo(async () => {
-    //Chat content is displayed using ChatController
-    const name = await chatCtl.setActionRequest({
-      type: "text",
-      always: true,
-    });
-  }, [chatCtl]);
 
   useEffect(() => {
     socket.removeAllListeners();
@@ -75,12 +65,23 @@ export const GameView = (props) => {
     socket.on("message", receiveMessage);
   }, []);
 
+  React.useMemo(async () => {
+    //Chat content is displayed using ChatController
+    const message = await chatCtl.setActionRequest(
+      {
+        type: "text",
+        always: true,
+      },
+      (message) => {
+        const data = { message: message.value, gameId: gameCode };
+        socket.emit("message", data);
+      }
+    );
+  }, [chatCtl]);
+
   const [gameState, setGameState] = useState({
     fen: "start",
   });
-
-  const [message, setMessage] = useState("");
-  const [messageLog, setMessageLog] = useState([]);
 
   function updateGameState(newMove) {
     chess.move(newMove);
@@ -95,9 +96,12 @@ export const GameView = (props) => {
     setGameOver({ gameOver: true, gameOverType: gameOverType });
   }
 
-  function receiveMessage(player, message) {
-    // TODO: add to chat log
-    console.log(player, message);
+  function receiveMessage(message) {
+    chatCtl.addMessage({
+      type: "text",
+      content: message,
+      self: false,
+    });
   }
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
@@ -169,18 +173,6 @@ export const GameView = (props) => {
   const isDone =
     gameOver.gameOverType === "checkmate" ? `${winner} wins` : "Draw";
 
-  const sendMessage = (player, message) => {
-    // TODO: add to chat log
-    console.log(player, message);
-
-    const data = {
-      player: player,
-      message: message,
-      gameId: gameCode,
-    };
-    socket.emit("message", data);
-  };
-
   return (
     <div>
       <TopHeader />
@@ -202,28 +194,6 @@ export const GameView = (props) => {
             <Box bgcolor="black" {...iconBox} />
             <h1 style={{ textAlign: "center" }}>{props.joinName}</h1>
           </Box>
-          {/* <div id="chatbox">
-            <TextField
-              value={message}
-              onChange={(event) => setMessage(event.target.value)}
-            />
-            <Button
-              onClick={() => {
-                if (props.role === "host") {
-                  sendMessage(props.hostName, message);
-                  setMessage("");
-                } else if (props.role === "join") {
-                  sendMessage(props.joinName, message);
-                  setMessage("");
-                } else {
-                  sendMessage("guest", message);
-                  setMessage("");
-                }
-              }}
-            >
-              Send
-            </Button>
-          </div> */}
         </div>
         <MuiChat chatController={chatCtl}></MuiChat>
       </Box>
