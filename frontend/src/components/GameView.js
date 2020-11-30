@@ -77,7 +77,7 @@ export const GameView = (props) => {
         socket.emit("message", data);
       }
     );
-  }, [chatCtl]);
+  }, [chatCtl, socket, gameCode]);
 
   const [gameState, setGameState] = useState({
     fen: "start",
