@@ -16,11 +16,8 @@ export const GamePage = (props) => {
     username: hostUsername,
   };
 
-  useEffect(() => {
-    socket.removeAllListeners();
-    socket.on("host username", setUsernameForHost);
-    socket.on("join username", setUsernameForJoin);
-  }, []);
+  socket.on("host username", setUsernameForHost);
+  socket.on("join username", setUsernameForJoin);
   socket.on("get host username", getUsernameForHost);
 
   function setUsernameForHost(hostName) {
