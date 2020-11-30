@@ -8,9 +8,10 @@ import { GamePage } from "./components/GamePage";
 const App = () => (
   <div>
     <Switch>
-      <Route path="/play/game">
-        <GamePage />
-      </Route>
+      <Route
+        path="/play/:code"
+        render={(props) => <GamePage {...props} />}
+      ></Route>
       <Route path="/play">
         <PlayPage />
       </Route>

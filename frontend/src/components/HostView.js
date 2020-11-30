@@ -11,17 +11,27 @@ import { PageNameHeader } from "./PageNameHeader";
 import { Link } from "react-router-dom";
 import { imagesData } from "../assets/imagesData";
 import { HostViewStyles } from "../styles/HostViewStyles";
+import { uid } from "uid";
+
+const socket = require("../connection/socket").socket;
 
 export const HostView = (props) => {
   const classes = HostViewStyles({});
   const [disable, setDisable] = useState(false);
   const [gameSelection, setGameSelection] = useState("");
+  const [setGameSettings] = useState("Private");
   const handleChange = (event) => {
     setGameSelection(event.target.value);
   };
   const selectedGameData = imagesData.filter(
     (image) => image.title === gameSelection
   );
+
+  const code = uid(6);
+  const hostData = {
+    gameId: code,
+    username: props.username,
+  };
 
   return (
     <div>
@@ -45,7 +55,10 @@ export const HostView = (props) => {
           <Button
             className={classes.gameSettingsButton}
             variant="contained"
-            onClick={() => setDisable(true)}
+            onClick={() => {
+              setDisable(true);
+              setGameSettings("Public");
+            }}
             disabled={disable}
             disableElevation={true}
           >
@@ -54,21 +67,41 @@ export const HostView = (props) => {
           <Button
             className={classes.gameSettingsButton}
             variant="contained"
-            onClick={() => setDisable(false)}
+            onClick={() => {
+              setDisable(false);
+              setGameSettings("Private");
+            }}
             disabled={!disable}
             disableElevation={true}
           >
             Private
           </Button>
         </ButtonGroup>
-        <Button
-          className={classes.hostButton}
-          disabled={!(gameSelection && selectedGameData[0].isDone)}
+        <Link
+          to={{
+            pathname: `/play/${code}`,
+            state: {
+              gameCode: code,
+              role: "host",
+            },
+          }}
+          className={classes.link}
+          onClick={(e) => {
+            if (!(gameSelection && selectedGameData[0].isDone)) {
+              e.preventDefault();
+            }
+          }}
         >
-          <Link to="/play/game" className={classes.link}>
+          <Button
+            className={classes.hostButton}
+            disabled={!(gameSelection && selectedGameData[0].isDone)}
+            onClick={() => {
+              socket.emit("createNewGame", hostData);
+            }}
+          >
             Host
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { LobbyView } from "./LobbyView";
-import { GameView } from "./GameView";
+import { MenuView } from "./MenuView";
+import { HostView } from "./HostView";
 
-export const GamePage = () => {
+export const PlayPage = () => {
   const [username, setUsername] = useState("");
 
-  const [view, setView] = useState("lobby");
+  const [view, setView] = useState("menu");
   const [history, setHistory] = useState([]);
 
   const goNext = (currView, nextView) => {
@@ -20,27 +20,18 @@ export const GamePage = () => {
   };
 
   switch (view) {
-    case "lobby":
+    case "menu":
       return (
-        <LobbyView
+        <MenuView
           username={username}
           setUsername={setUsername}
-          history={history}
           goNext={goNext}
           goBack={goBack}
         />
       );
 
-    case "game":
-      return (
-        <GameView
-          username={username}
-          setUsername={setUsername}
-          history={history}
-          goNext={goNext}
-          goBack={goBack}
-        />
-      );
+    case "host":
+      return <HostView username={username} goNext={goNext} goBack={goBack} />;
 
     default:
       return <div> Error </div>;
