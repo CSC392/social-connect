@@ -16,9 +16,7 @@ export const MenuViewStyles = makeStyles({
       backgroundColor: "#8474BE",
     },
   },
-  link: {
-    textDecoration: "none",
-  },
+
   hostButton: {
     backgroundColor: "#C8BFE7",
     fontSize: "25px",

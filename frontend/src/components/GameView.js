@@ -44,7 +44,7 @@ const iconBox = {
 };
 
 export const GameView = (props) => {
-  const [chess, setChess] = useState(new Chess());
+  const [chess] = useState(new Chess());
   const [gameOver, setGameOver] = useState({
     gameOver: false,
     gameOverType: "",
@@ -63,11 +63,11 @@ export const GameView = (props) => {
     socket.on("updateGameState", updateGameState);
     socket.on("endGame", endGame);
     socket.on("message", receiveMessage);
-  }, []);
+  });
 
   useMemo(async () => {
     //Chat content is displayed using ChatController
-    const message = await chatCtl.setActionRequest(
+    await chatCtl.setActionRequest(
       {
         type: "text",
         always: true,
