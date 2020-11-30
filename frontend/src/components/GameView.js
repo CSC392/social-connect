@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Chessboardjsx from "chessboardjsx";
 import { TopHeader } from "./TopHeader";
 import { PageNameHeader } from "./PageNameHeader";
@@ -65,7 +65,7 @@ export const GameView = (props) => {
     socket.on("message", receiveMessage);
   }, []);
 
-  React.useMemo(async () => {
+  useMemo(async () => {
     //Chat content is displayed using ChatController
     const message = await chatCtl.setActionRequest(
       {
