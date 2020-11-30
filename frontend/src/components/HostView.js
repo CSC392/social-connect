@@ -19,7 +19,7 @@ export const HostView = (props) => {
   const classes = HostViewStyles({});
   const [disable, setDisable] = useState(false);
   const [gameSelection, setGameSelection] = useState("");
-  const [gameSettings, setGameSettings] = useState("Private");
+  const [setGameSettings] = useState("Private");
   const handleChange = (event) => {
     setGameSelection(event.target.value);
   };

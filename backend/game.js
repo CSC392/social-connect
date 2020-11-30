@@ -60,8 +60,8 @@ function endGame(data) {
 }
 
 function transmitMessage(data) {
-  const { player, message, gameId } = data;
-  this.to(gameId).emit("message", player, message);
+  const { message, gameId } = data;
+  this.to(gameId).emit("message", message);
 }
 
 exports.init = init;
