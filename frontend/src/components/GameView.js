@@ -116,66 +116,57 @@ export const GameView = (props) => {
     let newMove = chess.move(moveOptions);
 
     // check if legal move
-    if (newMove != null) {
-      console.log("valid move");
-      // prevent opposing player from playing as player
-      if (
-        (props.role === "host" && newMove.color === "b") ||
-        (props.role === "join" && newMove.color === "w")
-      ) {
-        console.log("invalid turn");
-        chess.undo();
-        return;
+    if (newMove === null) return;
+
+    // prevent opposing player from playing as player
+    if (props.role === "host" && newMove.color === "b") return;
+    if (props.role === "join" && newMove.color === "w") return;
+
+    // client side move
+    setGameState({
+      fen: chess.fen(),
+    });
+    setTurn(chess.turn());
+
+    // server side move
+    const data = {
+      newMove: newMove,
+      gameId: gameCode,
+    };
+    socket.emit("move", data);
+
+    chess.turn() === "w" ? setWinner("Black") : setWinner("White");
+
+    // end of game check
+    if (
+      chess.in_checkmate() ||
+      chess.in_stalemate() ||
+      chess.in_threefold_repetition() ||
+      chess.insufficient_material()
+    ) {
+      var gameOverType;
+      if (chess.in_checkmate()) {
+        gameOverType = "checkmate";
+      } else if (chess.in_stalemate()) {
+        gameOverType = "stalemate";
+      } else if (chess.in_threefold_repetition()) {
+        gameOverType = "threefold repetition";
+      } else if (chess.insufficient_material()) {
+        gameOverType = "insufficient material";
       }
 
-      console.log("valid turn");
+      // client side game over
+      setGameOver({ gameOver: true, gameOverType: gameOverType });
 
-      // client side move
-      setGameState({
-        fen: chess.fen(),
-      });
-      setTurn(chess.turn());
-
-      // server side move
+      // server side game over
       const data = {
-        newMove: newMove,
+        winner: winner,
+        gameOverType: gameOverType,
         gameId: gameCode,
       };
-      socket.emit("move", data);
-
-      chess.turn() === "w" ? setWinner("Black") : setWinner("White");
-
-      // end of game check
-      if (
-        chess.in_checkmate() ||
-        chess.in_stalemate() ||
-        chess.in_threefold_repetition() ||
-        chess.insufficient_material()
-      ) {
-        var gameOverType;
-        if (chess.in_checkmate()) {
-          gameOverType = "checkmate";
-        } else if (chess.in_stalemate()) {
-          gameOverType = "stalemate";
-        } else if (chess.in_threefold_repetition()) {
-          gameOverType = "threefold repetition";
-        } else if (chess.insufficient_material()) {
-          gameOverType = "insufficient material";
-        }
-
-        // client side game over
-        setGameOver({ gameOver: true, gameOverType: gameOverType });
-
-        // server side game over
-        const data = {
-          winner: winner,
-          gameOverType: gameOverType,
-          gameId: gameCode,
-        };
-        socket.emit("game over", data);
-      } else {
-        setGameOver({ gameOver: false, gameOverType: "" });
-      }
+      socket.emit("game over", data);
+    } else {
+      setGameOver({ gameOver: false, gameOverType: "" });
     }
   };
 
