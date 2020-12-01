@@ -173,6 +173,16 @@ export const GameView = (props) => {
   const isDone =
     gameOver.gameOverType === "checkmate" ? `${winner} wins` : "Draw";
 
+  const moveHistory = [];
+  for (let move of chess.history({ verbose: true })) {
+    moveHistory.push(
+      <li>
+        {move.color === "w" ? props.hostName : props.joinName} moved{" "}
+        {move.piece} from {move.from} to {move.to}
+      </li>
+    );
+  }
+
   return (
     <div>
       <TopHeader />
@@ -180,11 +190,6 @@ export const GameView = (props) => {
       <PageNameHeader title="Chess" onClick={props.goBack}></PageNameHeader>
 
       <Box display="flex" p={1} className={classes.boxContainer}>
-        <Chessboardjsx
-          position={gameState.fen}
-          onDrop={onDrop}
-          orientation={props.role === "host" ? "White" : "Black"}
-        />
         <div>
           <Box bgcolor={turn === "w" ? "#8474BE" : "white"} {...playerBox}>
             <Box bgcolor="white" {...iconBox} />
@@ -194,7 +199,16 @@ export const GameView = (props) => {
             <Box bgcolor="black" {...iconBox} />
             <h1 style={{ textAlign: "center" }}>{props.joinName}</h1>
           </Box>
+          <div>
+            <ul>{moveHistory}</ul>
+          </div>
         </div>
+        <Chessboardjsx
+          position={gameState.fen}
+          onDrop={onDrop}
+          orientation={props.role === "host" ? "White" : "Black"}
+        />
+
         <MuiChat chatController={chatCtl}></MuiChat>
       </Box>
 
