@@ -30,9 +30,8 @@ export const LobbyView = (props) => {
           className={classes.gameName}
           alt=""
         ></img>
-        <p className={classes.headers}>Game Settings</p>
+        <p className={classes.headers}>Game Code</p>
         <div className={classes.subheaders}>
-          <p className={classes.titles}>Game Code</p>
           <p className={classes.greyText}>{gameCode}</p>
         </div>
         <p className={classes.headers}>Players</p>
