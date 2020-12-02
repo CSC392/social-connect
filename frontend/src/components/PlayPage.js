@@ -82,6 +82,8 @@ export const PlayPage = () => {
       open={showJoinMenu}
       classes={{ paper: classes.joinMenu }}
       onClose={() => {
+        setJoinValidate(1);
+        setHelperText("");
         setShowJoinMenu(false);
       }}
     >
@@ -98,6 +100,8 @@ export const PlayPage = () => {
           size="small"
           onClick={() => {
             setShowJoinMenu(false);
+            setJoinValidate(1);
+            setHelperText("");
           }}
         >
           <CloseIcon />
