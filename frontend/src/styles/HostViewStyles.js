@@ -1,19 +1,15 @@
 import { makeStyles } from "@material-ui/core";
 
 export const HostViewStyles = makeStyles({
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    borderBottom: `1px solid`,
-    position: "relative",
-    padding: "10px 0",
-  },
   body: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     fontSize: "20px",
+  },
+  gameSelection: {
+    fontSize: "15px",
+    fontFamily: "Roboto",
   },
   hostButton: {
     backgroundColor: "#C8BFE7",
@@ -25,9 +21,7 @@ export const HostViewStyles = makeStyles({
     "&:disabled": {
       backgroundColor: "#0000001f",
     },
-  },
-  gameSelection: {
-    minWidth: "120px",
+    padding: "10px 78px",
   },
   image: {
     marginTop: "10px",
