@@ -15,19 +15,6 @@ export const HostViewStyles = makeStyles({
     alignItems: "center",
     fontSize: "20px",
   },
-  gamePrivacy: {
-    marginTop: "30px",
-  },
-  gameSettingsButton: {
-    backgroundColor: "#C8BFE7",
-    fontSize: "15px",
-    "&:disabled": {
-      backgroundColor: "#8474BE",
-    },
-    "&:hover": {
-      backgroundColor: "#8474BE",
-    },
-  },
   hostButton: {
     backgroundColor: "#C8BFE7",
     fontSize: "15px",
