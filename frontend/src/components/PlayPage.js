@@ -9,13 +9,13 @@ import {
 import CloseIcon from "@material-ui/icons/Close";
 import { TopHeader } from "./TopHeader";
 import { Link } from "react-router-dom";
-import { MenuViewStyles } from "../styles/MenuViewStyles";
+import { PlayPageStyles } from "../styles/PlayPageStyles";
 import { HostView } from "./HostView";
 
 const socket = require("../connection/socket").socket;
 
-export const MenuView = () => {
-  const classes = MenuViewStyles({});
+export const PlayPage = () => {
+  const classes = PlayPageStyles({});
   const [showJoinMenu, setShowJoinMenu] = useState(false);
   const [showHost, setShowHost] = useState(false);
   const [joinCode, setJoinCode] = useState("");

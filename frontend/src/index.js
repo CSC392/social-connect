@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { HomePage } from "./components/HomePage";
 import { GamePage } from "./components/GamePage";
-import { MenuView } from "./components/MenuView";
+import { PlayPage } from "./components/PlayPage";
 
 const App = () => (
   <div>
@@ -13,7 +13,7 @@ const App = () => (
         render={(props) => <GamePage {...props} />}
       ></Route>
       <Route path="/play">
-        <MenuView />
+        <PlayPage />
       </Route>
       <Route path="/">
         <HomePage />

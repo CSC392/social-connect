@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-export const MenuViewStyles = makeStyles({
+export const PlayPageStyles = makeStyles({
   body: {
     paddingTop: "50px",
     display: "flex",
