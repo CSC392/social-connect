@@ -9,14 +9,15 @@ export const HostViewStyles = makeStyles({
   },
   gameSelection: {
     fontSize: "15px",
-    fontFamily: "Roboto",
+    fontFamily: "sans-serif-light",
   },
   hostButton: {
-    backgroundColor: "#C8BFE7",
+    backgroundColor: "#3f51b5",
+    color: "white",
     fontSize: "15px",
     marginTop: "30px",
     "&:hover": {
-      backgroundColor: "#8474BE",
+      backgroundColor: "#6877ca",
     },
     "&:disabled": {
       backgroundColor: "#0000001f",

@@ -14,10 +14,10 @@ import { MuiChat, ChatController } from "chat-ui-react";
 
 const useStyles = makeStyles({
   playButton: {
-    backgroundColor: "#C8BFE7",
+    backgroundColor: "#3f51b5",
     fontSize: "15px",
     "&:hover": {
-      backgroundColor: "#8474BE",
+      backgroundColor: "#6877ca",
     },
     borderRadius: "0px",
   },
@@ -196,11 +196,11 @@ export const GameView = (props) => {
 
       <Box display="flex" p={1} className={classes.boxContainer}>
         <div>
-          <Box bgcolor={turn === "w" ? "#8474BE" : "white"} {...playerBox}>
+          <Box bgcolor={turn === "w" ? "#3f51b5" : "white"} {...playerBox}>
             <Box bgcolor="white" {...iconBox} />
-            <h1 style={{ textAlign: "center" }}>{props.hostName}</h1>
+            <h1 style={{ textAlign: "center", color: "black" }}>{props.hostName}</h1>
           </Box>
-          <Box bgcolor={turn === "b" ? "#8474BE" : "white"} {...playerBox}>
+          <Box bgcolor={turn === "b" ? "#3f51b5" : "white"} {...playerBox}>
             <Box bgcolor="black" {...iconBox} />
             <h1 style={{ textAlign: "center" }}>{props.joinName}</h1>
           </Box>

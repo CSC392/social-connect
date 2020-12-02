@@ -8,6 +8,8 @@ import Box from "@material-ui/core/Box";
 const styles = makeStyles({
   body: {
     paddingTop: "50px",
+    backgroundColor: "#FAFAFA",
+    fontFamily: "sans-serif-light",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -16,23 +18,27 @@ const styles = makeStyles({
     textDecoration: "none",
   },
   playButton: {
-    backgroundColor: "#C8BFE7",
+    backgroundColor: "#3f51b5",
+    color: "white",
     fontSize: "25px",
     marginTop: "10px",
     marginBottom: "30px",
     padding: "0 93px",
     "&:hover": {
-      backgroundColor: "#8474BE",
+      backgroundColor: "#6877ca",
     },
   },
   welcomeBanner: {
+    backgroundColor: "#FAFAFA",
     fontSize: "40px",
+    fontFamily: "Roboto",
     paddingTop: "5px",
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
   },
   box: {
+    backgroundColor: "#FAFAFA",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -45,7 +51,7 @@ const styles = makeStyles({
 export const HomePage = () => {
   const classes = styles({});
   return (
-    <div>
+    <div style={{ backgroundColor: "#FAFAFA" }}>
       <TopHeader />
       <div className={classes.welcomeBanner}>
         <p>Welcome To Social Connect</p>

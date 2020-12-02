@@ -9,6 +9,7 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
+    "chat-ui-react": "^0.2.10",
     "express": "4.17.1",
     "socket.io": "2.3.0"
   },
