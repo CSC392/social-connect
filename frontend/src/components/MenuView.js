@@ -10,20 +10,23 @@ import CloseIcon from "@material-ui/icons/Close";
 import { TopHeader } from "./TopHeader";
 import { Link } from "react-router-dom";
 import { MenuViewStyles } from "../styles/MenuViewStyles";
+import { HostView } from "./HostView";
 
 const socket = require("../connection/socket").socket;
 
-export const MenuView = (props) => {
+export const MenuView = () => {
   const classes = MenuViewStyles({});
   const [showJoinMenu, setShowJoinMenu] = useState(false);
+  const [showHost, setShowHost] = useState(false);
   const [joinCode, setJoinCode] = useState("");
   const [joinValidate, setJoinValidate] = useState(1);
   const [helperText, setHelperText] = useState("");
-  const validUsername = props.username ? false : true;
+  const [username, setUsername] = useState("");
+  const validUsername = username ? false : true;
   const validJoinCode = joinCode ? false : true;
   const joinData = {
     gameId: joinCode,
-    username: props.username,
+    username: username,
   };
 
   useEffect(() => {
@@ -32,7 +35,7 @@ export const MenuView = (props) => {
   }, []);
 
   const handleChange = (event) => {
-    props.setUsername(event.target.value);
+    setUsername(event.target.value);
   };
 
   const handleJoinChange = (event) => {
@@ -53,6 +56,81 @@ export const MenuView = (props) => {
     }
   }
 
+  const HostViewDialog = (
+    <Dialog
+      open={showHost}
+      classes={{ paper: classes.joinMenu }}
+      onClose={() => {
+        setShowHost(false);
+      }}
+    >
+      <HostView username={username}></HostView>
+      <IconButton
+        className={classes.closeButton}
+        size="small"
+        onClick={() => {
+          setShowHost(false);
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+    </Dialog>
+  );
+
+  const JoinView = (
+    <Dialog
+      open={showJoinMenu}
+      classes={{ paper: classes.joinMenu }}
+      onClose={() => {
+        setShowJoinMenu(false);
+      }}
+    >
+      <DialogTitle>
+        <TextField
+          variant="outlined"
+          label="Enter Game Code"
+          onChange={handleJoinChange}
+          error={validJoinCode || joinValidate !== 0}
+          helperText={helperText}
+        ></TextField>
+        <IconButton
+          className={classes.closeButton}
+          size="small"
+          onClick={() => {
+            setShowJoinMenu(false);
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      </DialogTitle>
+      <Link
+        to={{
+          pathname: `/play/${joinCode}`,
+          state: {
+            gameCode: joinCode,
+            role: "join",
+          },
+        }}
+        className={classes.link}
+        onClick={(e) => {
+          if (validJoinCode || joinValidate !== 0) {
+            e.preventDefault();
+          }
+        }}
+      >
+        <Button
+          disabled={validJoinCode || joinValidate !== 0}
+          className={classes.joinMenuButton}
+          onClick={() => {
+            socket.emit("joinGame", joinData);
+          }}
+        >
+          Join Game
+        </Button>
+      </Link>
+    </Dialog>
+  );
+
   return (
     <div>
       <TopHeader />
@@ -72,12 +150,11 @@ export const MenuView = (props) => {
           className={classes.hostButton}
           disabled={validUsername}
           onClick={() => {
-            props.goNext("menu", "host"); // go to next view and set history
+            setShowHost(true);
           }}
         >
           Host Game
         </Button>
-
         <Button
           className={classes.joinButton}
           disabled={validUsername}
@@ -87,58 +164,8 @@ export const MenuView = (props) => {
         >
           Join Game
         </Button>
-
-        <Dialog
-          open={showJoinMenu}
-          classes={{ paper: classes.joinMenu }}
-          onClose={() => {
-            setShowJoinMenu(false);
-          }}
-        >
-          <DialogTitle>
-            <TextField
-              variant="outlined"
-              label="Enter Game Code"
-              onChange={handleJoinChange}
-              error={validJoinCode || joinValidate !== 0}
-              helperText={helperText}
-            ></TextField>
-            <IconButton
-              className={classes.closeButton}
-              size="small"
-              onClick={() => {
-                setShowJoinMenu(false);
-              }}
-            >
-              <CloseIcon />
-            </IconButton>
-          </DialogTitle>
-          <Link
-            to={{
-              pathname: `/play/${joinCode}`,
-              state: {
-                gameCode: joinCode,
-                role: "join",
-              },
-            }}
-            className={classes.link}
-            onClick={(e) => {
-              if (validJoinCode || joinValidate !== 0) {
-                e.preventDefault();
-              }
-            }}
-          >
-            <Button
-              disabled={validJoinCode || joinValidate !== 0}
-              className={classes.joinMenuButton}
-              onClick={() => {
-                socket.emit("joinGame", joinData);
-              }}
-            >
-              Join Game
-            </Button>
-          </Link>
-        </Dialog>
+        {showJoinMenu && JoinView}
+        {showHost && HostViewDialog}
       </div>
     </div>
   );
