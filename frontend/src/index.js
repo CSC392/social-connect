@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { HomePage } from "./components/HomePage";
-import { PlayPage } from "./components/PlayPage";
 import { GamePage } from "./components/GamePage";
+import { MenuView } from "./components/MenuView";
 
 const App = () => (
   <div>
@@ -13,7 +13,7 @@ const App = () => (
         render={(props) => <GamePage {...props} />}
       ></Route>
       <Route path="/play">
-        <PlayPage />
+        <MenuView />
       </Route>
       <Route path="/">
         <HomePage />
