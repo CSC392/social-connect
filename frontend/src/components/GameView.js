@@ -192,7 +192,7 @@ export const GameView = (props) => {
     <div>
       <TopHeader />
 
-      <PageNameHeader onClick={props.goBack}></PageNameHeader>
+      <PageNameHeader title="Chess" onClick={props.goBack}></PageNameHeader>
 
       <Box display="flex" p={1} className={classes.boxContainer}>
         <div>
