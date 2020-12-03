@@ -8,7 +8,6 @@ export const PlayPageStyles = makeStyles({
     alignItems: "center",
   },
   Backbutton: {
-    marginTop: "00px",
     backgroundColor: "#3f51b5",
     color: "#FFFFFF",
     fontSize: "10px",

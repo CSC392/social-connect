@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const useStyles = makeStyles({
