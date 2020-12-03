@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { PlayPageStyles } from "../styles/PlayPageStyles";
 import { HostView } from "./HostView";
 
-const socket = require("../connection/socket").socket;
+const socket = require("../socket").socket;
 
 export const PlayPage = () => {
   const classes = PlayPageStyles({});

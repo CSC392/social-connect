@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LobbyView } from "./LobbyView";
 import { GameView } from "./GameView";
 
-const socket = require("../connection/socket").socket;
+const socket = require("../socket").socket;
 
 export const GamePage = (props) => {
   const [view, setView] = useState("lobby");

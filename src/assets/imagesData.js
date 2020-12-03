@@ -1,5 +1,5 @@
-import chessImage from "../assets/chess.png";
-import tempImage from "../assets/temp.png";
+import chessImage from "./chess.png";
+import tempImage from "./temp.png";
 
 export const imagesData = [
   {
