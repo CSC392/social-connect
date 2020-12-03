@@ -1,21 +1,18 @@
 import React from "react";
-import { makeStyles, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   header: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: "10px"
+    backgroundColor: "#FAFAFA",
+    fontSize: "30px",
+    marginTop: "10px",
+    marginBottom: "0px",
+    paddingBottom: "10px",
+    borderBottom: `1px solid`,
   },
 });
 
-
 export const TopHeader = () => {
   const classes = useStyles({});
-  return <div className={classes.header}>
-    <img src={logo} alt="" height="75" />
-  </div>
+  return <div className={classes.header}> Social Connect </div>;
 };

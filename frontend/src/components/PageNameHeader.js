@@ -6,6 +6,7 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
+    borderBottom: `1px solid`,
     position: "relative",
     padding: "10px 0",
   },
@@ -18,6 +19,13 @@ const useStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#8474BE",
     },
+  },
+  title: {
+    fontSize: "25px",
+    flex: "0 1 auto",
+    position: "relative",
+    left: "50%",
+    transform: "translateX(-50%)",
   },
 });
 export const PageNameHeader = (props) => {
