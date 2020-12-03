@@ -12,12 +12,11 @@ const useStyles = makeStyles({
   Backbutton: {
     flex: "0 1 auto",
     backgroundColor: "#3f51b5",
-    // marginTop: "10px",
     color: "white",
     fontSize: "10px",
     variant: "contained",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
 });
