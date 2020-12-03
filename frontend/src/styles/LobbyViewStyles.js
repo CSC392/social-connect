@@ -7,12 +7,11 @@ export const LobbyViewStyles = makeStyles({
     alignItems: "center",
   },
   startGame: {
-    backgroundColor: "#3f51b5",
-    color: "#FFFFFF",
+    backgroundColor: "#C8BFE7",
     fontSize: "20px",
     marginTop: "30px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
   greyText: {
@@ -42,13 +41,12 @@ export const LobbyViewStyles = makeStyles({
     textDecoration: "none",
   },
   Backbutton: {
-    backgroundColor: "#3f51b5",
-    color: "#FFFFFF",
+    backgroundColor: "#C8BFE7",
     fontSize: "10px",
     variant: "contained",
     marginTop: "10px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
 });

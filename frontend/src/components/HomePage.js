@@ -17,19 +17,17 @@ const styles = makeStyles({
     textDecoration: "none",
   },
   playButton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "#C8BFE7",
     fontSize: "25px",
     marginTop: "10px",
     marginBottom: "30px",
     padding: "0 93px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
   welcomeBanner: {
     fontSize: "40px",
-    fontFamily: "Roboto",
     paddingTop: "5px",
     display: "flex",
     alignItems: "center",
@@ -79,6 +77,6 @@ export const HomePage = () => {
           </Box>
         </Box>
       </div>
-    </div>
+    </div >
   );
 };

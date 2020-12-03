@@ -19,23 +19,21 @@ export const HostViewStyles = makeStyles({
     marginTop: "30px",
   },
   gameSettingsButton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "#C8BFE7",
     fontSize: "15px",
     "&:disabled": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
   hostButton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "#C8BFE7",
     fontSize: "15px",
     marginTop: "30px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
     "&:disabled": {
       backgroundColor: "#0000001f",

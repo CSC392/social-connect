@@ -14,45 +14,42 @@ export const MenuViewStyles = makeStyles({
     fontSize: "10px",
     variant: "contained",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
 
   hostButton: {
-    backgroundColor: "#3f51b5",
-    color: "#FFFFFF",
+    backgroundColor: "#C8BFE7",
     fontSize: "25px",
     marginTop: "75px",
     padding: "0 93px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
   browseButton: {
-    backgroundColor: "#3f51b5",
+    backgroundColor: "#C8BFE7",
     fontSize: "25px",
     marginTop: "35px",
     padding: "0 72px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
   joinButton: {
-    backgroundColor: "#3f51b5",
-    color: "#FFFFFF",
+    backgroundColor: "#C8BFE7",
     fontSize: "25px",
     marginTop: "35px",
     padding: "0 100px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
   },
   joinMenuButton: {
-    backgroundColor: "#3f51b5",
-    color: "#FFFFF",
+    backgroundColor: "#C8BFE7",
     fontSize: "15px",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
     },
     padding: "10px 78px",
   },
@@ -60,10 +57,10 @@ export const MenuViewStyles = makeStyles({
     position: "absolute",
     left: "95%",
     top: "-10%",
-    backgroundColor: "#3f51b5",
-    color: "white",
+    backgroundColor: "#C8BFE7",
+    color: "black",
     "&:hover": {
-      backgroundColor: "#6877ca",
+      backgroundColor: "#8474BE",
       color: "red",
     },
   },
