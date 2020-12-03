@@ -36,7 +36,7 @@ export const HostView = (props) => {
   return (
     <div>
       <TopHeader />
-      <PageNameHeader title="Host Game" onClick={props.goBack}></PageNameHeader>
+      <PageNameHeader onClick={props.goBack}></PageNameHeader>
       <div className={classes.body}>
         <p>Game Selection</p>
         <FormControl className={classes.gameSelection}>

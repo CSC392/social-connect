@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, makeStyles } from "@material-ui/core";
-import { TopHeader } from "./TopHeader";
 import chessImage from "../assets/chess.png";
 import Box from "@material-ui/core/Box";
+import logo from "../assets/logo.png";
 
 const styles = makeStyles({
   body: {
     paddingTop: "50px",
-    backgroundColor: "#FAFAFA",
     fontFamily: "sans-serif-light",
     display: "flex",
     flexDirection: "column",
@@ -29,7 +28,6 @@ const styles = makeStyles({
     },
   },
   welcomeBanner: {
-    backgroundColor: "#FAFAFA",
     fontSize: "40px",
     fontFamily: "Roboto",
     paddingTop: "5px",
@@ -38,7 +36,6 @@ const styles = makeStyles({
     flexDirection: "column",
   },
   box: {
-    backgroundColor: "#FAFAFA",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -51,8 +48,8 @@ const styles = makeStyles({
 export const HomePage = () => {
   const classes = styles({});
   return (
-    <div style={{ backgroundColor: "#FAFAFA" }}>
-      <TopHeader />
+    <div>
+      <img src={logo} alt="" height="75" />
       <div className={classes.welcomeBanner}>
         <p>Welcome To Social Connect</p>
         <img src={chessImage} alt="" />

@@ -6,26 +6,19 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    borderBottom: `1px solid`,
     position: "relative",
     padding: "10px 0",
   },
   Backbutton: {
     flex: "0 1 auto",
     backgroundColor: "#3f51b5",
+    // marginTop: "10px",
     color: "white",
     fontSize: "10px",
     variant: "contained",
     "&:hover": {
       backgroundColor: "#6877ca",
     },
-  },
-  title: {
-    fontSize: "25px",
-    flex: "0 1 auto",
-    position: "relative",
-    left: "50%",
-    transform: "translateX(-50%)",
   },
 });
 export const PageNameHeader = (props) => {
