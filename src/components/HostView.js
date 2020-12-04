@@ -5,7 +5,7 @@ import { imagesData } from "../assets/imagesData";
 import { HostViewStyles } from "../styles/HostViewStyles";
 import { uid } from "uid";
 
-const socket = require("../connection/socket").socket;
+const socket = require("../client").socket;
 
 export const HostView = (props) => {
   const classes = HostViewStyles({});
