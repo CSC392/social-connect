@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, makeStyles } from "@material-ui/core";
-import { TopHeader } from "./TopHeader";
 import chessImage from "../assets/chess.png";
-import Box from "@material-ui/core/Box";
 import logo from "../assets/logo.png";
 
 const styles = makeStyles({
@@ -51,14 +49,6 @@ const styles = makeStyles({
     fontSize: "20px",
     fontWeight: "bold",
   },
-  // box: {
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  // },
-  // miniBox: {
-  //   paddingRight: "100px",
-  // },
 });
 
 export const HomePage = () => {
@@ -100,23 +90,6 @@ export const HomePage = () => {
 
         <h2>The best place to stay connected</h2>
       </div>
-
-      {/* <div style={{ width: "100%" }}>
-        <Box className={classes.box} p={1}>
-          <Box p={1} className={classes.miniBox}>
-            <h2>Connect With Friends or Strangers</h2>
-          </Box>
-          <Box p={1} className={classes.miniBox}>
-            <h2>Communicate via Chat</h2>
-          </Box>
-          <Box p={1} className={classes.miniBox}>
-            <h2>Play a Variety of Games</h2>
-          </Box>
-          <Box p={1} className={classes.miniBox}>
-            <h2>More Features Coming Soon</h2>
-          </Box>
-        </Box>
-      </div> */}
     </div>
   );
 };
