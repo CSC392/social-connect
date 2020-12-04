@@ -1,17 +1,19 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
+import logo from "../assets/logo.png";
 
 const useStyles = makeStyles({
   header: {
-    fontSize: "30px",
-    marginTop: "10px",
-    marginBottom: "0px",
-    paddingBottom: "10px",
-    borderBottom: `1px solid`,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: "10px"
   },
 });
 
 export const TopHeader = () => {
   const classes = useStyles({});
-  return <div className={classes.header}> Social Connect </div>;
+  return <div className={classes.header}>
+    <img src={logo} alt="" height="75" />
+  </div>;
 };

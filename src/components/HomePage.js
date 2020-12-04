@@ -4,6 +4,7 @@ import { Button, makeStyles } from "@material-ui/core";
 import { TopHeader } from "./TopHeader";
 import chessImage from "../assets/chess.png";
 import Box from "@material-ui/core/Box";
+import logo from "../assets/logo.png";
 
 const styles = makeStyles({
   body: {
@@ -16,13 +17,14 @@ const styles = makeStyles({
     textDecoration: "none",
   },
   playButton: {
-    backgroundColor: "#C8BFE7",
+    backgroundColor: "#3f51b5",
+    color: "white",
     fontSize: "25px",
     marginTop: "10px",
     marginBottom: "30px",
     padding: "0 93px",
     "&:hover": {
-      backgroundColor: "#8474BE",
+      backgroundColor: "#6877ca",
     },
   },
   welcomeBanner: {
@@ -46,7 +48,7 @@ export const HomePage = () => {
   const classes = styles({});
   return (
     <div>
-      <TopHeader />
+      <img src={logo} alt="" height="75" />
       <div className={classes.welcomeBanner}>
         <p>Welcome To Social Connect</p>
         <img src={chessImage} alt="" />
