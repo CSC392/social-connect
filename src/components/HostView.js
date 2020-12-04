@@ -49,7 +49,7 @@ export const HostView = (props) => {
         }}
       >
         <Button
-          className={classes.hostButton}
+          className={classes.hostMenuButton}
           disabled={!(gameSelection && selectedGameData[0].isDone)}
           onClick={() => {
             socket.emit("createNewGame", hostData);

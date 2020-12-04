@@ -28,16 +28,6 @@ export const PlayPageStyles = makeStyles({
       backgroundColor: "#6877ca",
     },
   },
-  browseButton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    fontSize: "25px",
-    marginTop: "35px",
-    padding: "0 72px",
-    "&:hover": {
-      backgroundColor: "#6877ca",
-    },
-  },
   joinButton: {
     backgroundColor: "#3f51b5",
     color: "white",
@@ -47,15 +37,6 @@ export const PlayPageStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#6877ca",
     },
-  },
-  joinMenuButton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    fontSize: "15px",
-    "&:hover": {
-      backgroundColor: "#6877ca",
-    },
-    padding: "10px 78px",
   },
   closeButton: {
     position: "absolute",
@@ -68,15 +49,7 @@ export const PlayPageStyles = makeStyles({
       color: "red",
     },
   },
-  joinMenu: {
+  menu: {
     overflowY: "unset",
-  },
-  link: {
-    textDecoration: "none",
-    color: "black",
-    cursor: "default",
-    "&:active": {
-      cursor: "pointer",
-    },
   },
 });

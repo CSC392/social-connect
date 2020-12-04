@@ -1,67 +1,30 @@
-import React, { useEffect, useState } from "react";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogTitle,
-  IconButton,
-} from "@material-ui/core";
+import React, { useState } from "react";
+import { Button, TextField, Dialog, IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { TopHeader } from "./TopHeader";
 import { Link } from "react-router-dom";
 import { PlayPageStyles } from "../styles/PlayPageStyles";
 import { HostView } from "./HostView";
-
-const socket = require("../client").socket;
+import { JoinView } from "./JoinView";
 
 export const PlayPage = () => {
   const classes = PlayPageStyles({});
-  const [showJoinMenu, setShowJoinMenu] = useState(false);
-  const [showHost, setShowHost] = useState(false);
-  const [joinCode, setJoinCode] = useState("");
-  const [joinValidate, setJoinValidate] = useState(1);
-  const [helperText, setHelperText] = useState("");
+
   const [username, setUsername] = useState("");
   const validUsername = username ? false : true;
-  const validJoinCode = joinCode ? false : true;
-  const joinData = {
-    gameId: joinCode,
-    username: username,
-  };
-
-  useEffect(() => {
-    socket.removeAllListeners();
-    socket.on("status", joinError);
-  }, []);
+  const [showHostMenu, setShowHostMenu] = useState(false);
+  const [showJoinMenu, setShowJoinMenu] = useState(false);
 
   const handleChange = (event) => {
     setUsername(event.target.value);
   };
 
-  const handleJoinChange = (event) => {
-    setJoinCode(event.target.value);
-    socket.emit("validate join code", event.target.value);
-  };
-
-  function joinError(errorCode) {
-    if (errorCode === 1) {
-      setJoinValidate(1);
-      setHelperText("This room doesn't exist");
-    } else if (errorCode === 2) {
-      setJoinValidate(2);
-      setHelperText("This room is full");
-    } else {
-      setHelperText("");
-      setJoinValidate(0);
-    }
-  }
-
   const HostViewDialog = (
     <Dialog
-      open={showHost}
-      classes={{ paper: classes.joinMenu }}
+      open={showHostMenu}
+      classes={{ paper: classes.menu }}
       onClose={() => {
-        setShowHost(false);
+        setShowHostMenu(false);
       }}
     >
       <HostView username={username}></HostView>
@@ -69,7 +32,7 @@ export const PlayPage = () => {
         className={classes.closeButton}
         size="small"
         onClick={() => {
-          setShowHost(false);
+          setShowHostMenu(false);
         }}
       >
         <CloseIcon />
@@ -77,61 +40,24 @@ export const PlayPage = () => {
     </Dialog>
   );
 
-  const JoinView = (
+  const JoinViewDialog = (
     <Dialog
       open={showJoinMenu}
-      classes={{ paper: classes.joinMenu }}
+      classes={{ paper: classes.menu }}
       onClose={() => {
-        setJoinValidate(1);
-        setHelperText("");
         setShowJoinMenu(false);
       }}
     >
-      <DialogTitle>
-        <TextField
-          variant="outlined"
-          label="Enter Game Code"
-          onChange={handleJoinChange}
-          error={validJoinCode || joinValidate !== 0}
-          helperText={helperText}
-        ></TextField>
-        <IconButton
-          className={classes.closeButton}
-          size="small"
-          onClick={() => {
-            setShowJoinMenu(false);
-            setJoinValidate(1);
-            setHelperText("");
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <Link
-        to={{
-          pathname: `/play/${joinCode}`,
-          state: {
-            gameCode: joinCode,
-            role: "join",
-          },
-        }}
-        className={classes.link}
-        onClick={(e) => {
-          if (validJoinCode || joinValidate !== 0) {
-            e.preventDefault();
-          }
+      <JoinView username={username}></JoinView>
+      <IconButton
+        className={classes.closeButton}
+        size="small"
+        onClick={() => {
+          setShowJoinMenu(false);
         }}
       >
-        <Button
-          disabled={validJoinCode || joinValidate !== 0}
-          className={classes.joinMenuButton}
-          onClick={() => {
-            socket.emit("joinGame", joinData);
-          }}
-        >
-          Join Game
-        </Button>
-      </Link>
+        <CloseIcon />
+      </IconButton>
     </Dialog>
   );
 
@@ -150,15 +76,17 @@ export const PlayPage = () => {
           onChange={handleChange}
           error={validUsername}
         ></TextField>
+
         <Button
           className={classes.hostButton}
           disabled={validUsername}
           onClick={() => {
-            setShowHost(true);
+            setShowHostMenu(true);
           }}
         >
           Host Game
         </Button>
+
         <Button
           className={classes.joinButton}
           disabled={validUsername}
@@ -168,8 +96,9 @@ export const PlayPage = () => {
         >
           Join Game
         </Button>
-        {showJoinMenu && JoinView}
-        {showHost && HostViewDialog}
+
+        {showJoinMenu && JoinViewDialog}
+        {showHostMenu && HostViewDialog}
       </div>
     </div>
   );
