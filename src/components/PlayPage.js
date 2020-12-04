@@ -22,7 +22,7 @@ export const PlayPage = () => {
   const HostViewDialog = (
     <Dialog
       open={showHostMenu}
-      classes={{ paper: classes.joinMenu }}
+      classes={{ paper: classes.menu }}
       onClose={() => {
         setShowHostMenu(false);
       }}
@@ -43,7 +43,7 @@ export const PlayPage = () => {
   const JoinViewDialog = (
     <Dialog
       open={showJoinMenu}
-      classes={{ paper: classes.joinMenu }}
+      classes={{ paper: classes.menu }}
       onClose={() => {
         setShowJoinMenu(false);
       }}

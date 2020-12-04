@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, TextField, DialogTitle } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { HostViewStyles } from "../styles/HostViewStyles";
+import { JoinViewStyles } from "../styles/JoinViewStyles";
 
 const socket = require("../client").socket;
 
 export const JoinView = (props) => {
-  const classes = HostViewStyles({});
+  const classes = JoinViewStyles({});
 
   const [joinCode, setJoinCode] = useState("");
   const [joinValidate, setJoinValidate] = useState(1);
