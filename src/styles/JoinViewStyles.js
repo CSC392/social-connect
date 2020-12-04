@@ -15,20 +15,6 @@ export const JoinViewStyles = makeStyles({
     },
     padding: "10px 78px",
   },
-  closeButton: {
-    position: "absolute",
-    left: "95%",
-    top: "-10%",
-    backgroundColor: "#3f51b5",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "#6877ca",
-      color: "red",
-    },
-  },
-  joinMenu: {
-    overflowY: "unset",
-  },
   link: {
     textDecoration: "none",
     color: "black",
