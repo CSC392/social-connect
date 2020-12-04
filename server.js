@@ -78,19 +78,17 @@ function hostUsername(hostData) {
 }
 
 function validateJoinCode(gameId) {
-  const room = io.sockets.adapter.rooms[gameId];
-  console.log(room);
-  // if (room === undefined) {
-  //   this.emit("status", 1);
-  //   return;
-  // } else if (room.length >= 2) {
-  //   this.emit("status", 2);
-  //   return;
-  // } else {
-  //   this.emit("status", 0);
-  //   return;
-  // }
-  this.emit("status", 0);
+  const rooms = io.sockets.adapter.rooms;
+  if (rooms.has(gameId)) {
+    const room = rooms.get(gameId);
+    if (room.size < 2) {
+      this.emit("status", 0);
+      return;
+    }
+    this.emit("status", 2);
+    return;
+  }
+  this.emit("status", 1);
   return;
 }
 
