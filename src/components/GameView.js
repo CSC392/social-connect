@@ -54,7 +54,7 @@ export const GameView = (props) => {
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
-  const { socket, gameCode } = props;
+  const { socket, gameCode, enablePlayButtons, role } = props;
 
   const [chatCtl] = React.useState(new ChatController());
 
@@ -119,8 +119,8 @@ export const GameView = (props) => {
     if (newMove != null) {
       // prevent opposing player from playing as player
       if (
-        (props.role === "host" && newMove.color === "b") ||
-        (props.role === "join" && newMove.color === "w")
+        (role === "host" && newMove.color === "b") ||
+        (role === "join" && newMove.color === "w")
       ) {
         chess.undo();
         return;
@@ -198,11 +198,15 @@ export const GameView = (props) => {
         <div>
           <Box bgcolor={turn === "w" ? "#3f51b5" : "white"} {...playerBox}>
             <Box bgcolor="white" {...iconBox} />
-            <h1 style={{ textAlign: "center", color: "black" }}>{props.hostName}</h1>
+            <h1 style={{ textAlign: "center", color: "black" }}>
+              {props.hostName}
+            </h1>
           </Box>
           <Box bgcolor={turn === "b" ? "#3f51b5" : "white"} {...playerBox}>
             <Box bgcolor="black" {...iconBox} />
-            <h1 style={{ textAlign: "center", color: "black" }}>{props.joinName}</h1>
+            <h1 style={{ textAlign: "center", color: "black" }}>
+              {props.joinName}
+            </h1>
           </Box>
           <div>
             <ul>{moveHistory}</ul>
@@ -211,7 +215,7 @@ export const GameView = (props) => {
         <Chessboardjsx
           position={gameState.fen}
           onDrop={onDrop}
-          orientation={props.role === "host" ? "White" : "Black"}
+          orientation={role === "host" ? "White" : "Black"}
         />
 
         <MuiChat chatController={chatCtl}></MuiChat>
@@ -222,7 +226,11 @@ export const GameView = (props) => {
           <DialogTitle>
             {isDone} by {gameOver.gameOverType}!
           </DialogTitle>
-          <Button className={classes.playButton} onClick={props.goBack}>
+          <Button
+            className={classes.playButton}
+            disabled={!enablePlayButtons}
+            onClick={props.goBack}
+          >
             Play again
           </Button>
         </Dialog>
