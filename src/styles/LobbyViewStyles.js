@@ -41,16 +41,6 @@ export const LobbyViewStyles = makeStyles({
   link: {
     textDecoration: "none",
   },
-  Backbutton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    fontSize: "10px",
-    variant: "contained",
-    marginTop: "10px",
-    "&:hover": {
-      backgroundColor: "#6877ca",
-    },
-  },
   loadingContainer: {
     display: "flex",
     flexDirection: "column",

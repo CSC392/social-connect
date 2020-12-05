@@ -16,7 +16,10 @@ export const LobbyView = (props) => {
     role,
     socket,
   } = props;
-  const helperText = role === "host" ? "Waiting for another player" : "Waiting for host to start the game";
+  const helperText =
+    role === "host"
+      ? "Waiting for another player"
+      : "Waiting for host to start the game";
 
   socket.on("start game", startGame);
   function startGame() {
@@ -31,11 +34,6 @@ export const LobbyView = (props) => {
   return (
     <div>
       <TopHeader />
-      <div className={classes.backButton}>
-        <Link to="/play" className={classes.link}>
-          <Button className={classes.Backbutton}>Back</Button>
-        </Link>
-      </div>
       <div className={classes.body}>
         <p className={classes.headers}>Game Selection</p>
         <img

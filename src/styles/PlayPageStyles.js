@@ -7,17 +7,6 @@ export const PlayPageStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
   },
-  Backbutton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    fontSize: "10px",
-    variant: "contained",
-    marginTop: "10px",
-    "&:hover": {
-      backgroundColor: "#6877ca",
-    },
-  },
-
   hostButton: {
     backgroundColor: "#3f51b5",
     color: "white",

@@ -64,11 +64,6 @@ export const PlayPage = () => {
   return (
     <div>
       <TopHeader />
-      <div className={classes.backButton}>
-        <Link to="/" className={classes.link}>
-          <Button className={classes.Backbutton}>Back</Button>
-        </Link>
-      </div>
       <div className={classes.body}>
         <TextField
           variant="outlined"
