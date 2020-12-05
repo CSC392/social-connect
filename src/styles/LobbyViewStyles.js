@@ -14,6 +14,9 @@ export const LobbyViewStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#6877ca",
     },
+    "&:disabled": {
+      backgroundColor: "#6877ca",
+    },
   },
   greyText: {
     backgroundColor: "#E5E5E5",

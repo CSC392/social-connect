@@ -16,6 +16,9 @@ export const PlayPageStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#6877ca",
     },
+    "&:disabled": {
+      backgroundColor: "#6877ca",
+    },
   },
   joinButton: {
     backgroundColor: "#3f51b5",
@@ -24,6 +27,9 @@ export const PlayPageStyles = makeStyles({
     marginTop: "35px",
     padding: "0 100px",
     "&:hover": {
+      backgroundColor: "#6877ca",
+    },
+    "&:disabled": {
       backgroundColor: "#6877ca",
     },
   },

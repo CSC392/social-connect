@@ -13,6 +13,9 @@ export const JoinViewStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#6877ca",
     },
+    "&:disabled": {
+      backgroundColor: "#6877ca",
+    },
     padding: "10px 78px",
   },
   link: {
