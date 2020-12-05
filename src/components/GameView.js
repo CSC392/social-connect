@@ -208,8 +208,6 @@ export const GameView = (props) => {
     <div>
       <TopHeader />
 
-      <PageNameHeader onClick={props.goBack}></PageNameHeader>
-
       <Box display="flex" p={1} className={classes.boxContainer}>
         <div>
           <Box bgcolor={turn === "w" ? "#3f51b5" : "white"} {...playerBox}>
