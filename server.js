@@ -50,6 +50,7 @@ const handle = (io, socket) => {
   socket.on("joinGame", joinGame);
   socket.on("host username", hostUsername);
   socket.on("validate join code", validateJoinCode);
+  socket.on("start game", startGame);
   socket.on("move", updateGameState);
   socket.on("game over", endGame);
   socket.on("message", transmitMessage);
@@ -90,6 +91,10 @@ function validateJoinCode(gameId) {
   }
   this.emit("status", 1);
   return;
+}
+
+function startGame(gameId) {
+  this.to(gameId).emit("start game");
 }
 
 function updateGameState(data) {

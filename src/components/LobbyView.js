@@ -8,11 +8,24 @@ import { LobbyViewStyles } from "../styles/LobbyViewStyles";
 export const LobbyView = (props) => {
   const classes = LobbyViewStyles({});
 
-  const { gameCode, hostName, joinName, enablePlayButtons, role } = props;
+  const {
+    gameCode,
+    hostName,
+    joinName,
+    enablePlayButtons,
+    role,
+    socket,
+  } = props;
   const helperText =
     role === "host"
       ? "Waiting for another player"
       : "Waiting for host to start the game";
+
+  socket.on("start game", startGame);
+  function startGame() {
+    props.goNext("lobby", "game");
+  }
+
   //This is to get the name of the game selected
   const selectedGameData = imagesData.filter(
     (image) => image.title === "Chess"
@@ -46,6 +59,7 @@ export const LobbyView = (props) => {
         <Button
           className={classes.startGame}
           onClick={() => {
+            socket.emit("start game", gameCode);
             props.goNext("lobby", "game");
           }}
           disabled={!enablePlayButtons}
