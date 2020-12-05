@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Select, FormControl, MenuItem } from "@material-ui/core";
+import {
+  Button,
+  Select,
+  FormControl,
+  MenuItem,
+  InputLabel,
+  FormHelperText,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { imagesData } from "../assets/imagesData";
 import { HostViewStyles } from "../styles/HostViewStyles";
@@ -26,12 +33,26 @@ export const HostView = (props) => {
   return (
     <div className={classes.body}>
       <p className={classes.gameSelection}>Game Selection</p>
-      <FormControl className={classes.gameSelection}>
-        <Select value={gameSelection} onChange={handleChange}>
+      <FormControl
+        className={classes.form}
+        variant="outlined"
+        error={!(gameSelection && selectedGameData[0].isDone)}
+      >
+        <InputLabel>Choose a game</InputLabel>
+        <Select
+          value={gameSelection}
+          onChange={handleChange}
+          label="Choose a game"
+        >
           {imagesData.map((image) => (
             <MenuItem value={image.title}>{image.title}</MenuItem>
           ))}
         </Select>
+        {gameSelection && (
+          <FormHelperText>
+            {selectedGameData[0].isDone ? "" : "In Progress. Stay tuned!"}
+          </FormHelperText>
+        )}
       </FormControl>
       <Link
         to={{
@@ -61,3 +82,8 @@ export const HostView = (props) => {
     </div>
   );
 };
+
+//if not game selection
+// ""
+// if not done
+// helperText

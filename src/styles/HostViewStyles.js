@@ -11,6 +11,9 @@ export const HostViewStyles = makeStyles({
     fontSize: "15px",
     fontFamily: "sans-serif-light",
   },
+  form: {
+    minWidth: "160px",
+  },
   hostMenuButton: {
     backgroundColor: "#3f51b5",
     color: "white",
