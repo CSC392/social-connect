@@ -38,7 +38,6 @@ export const JoinView = (props) => {
       setHelperText("");
       setJoinValidate(0);
     }
-    console.log("joinerror");
   }
 
   return (

@@ -2,7 +2,6 @@ import React from "react";
 import { TopHeader } from "./TopHeader";
 import { Button, CircularProgress } from "@material-ui/core";
 import { imagesData } from "../assets/imagesData";
-import { Link } from "react-router-dom";
 import { LobbyViewStyles } from "../styles/LobbyViewStyles";
 
 export const LobbyView = (props) => {

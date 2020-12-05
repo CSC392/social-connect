@@ -82,8 +82,3 @@ export const HostView = (props) => {
     </div>
   );
 };
-
-//if not game selection
-// ""
-// if not done
-// helperText

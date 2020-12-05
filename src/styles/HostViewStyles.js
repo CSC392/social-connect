@@ -27,9 +27,6 @@ export const HostViewStyles = makeStyles({
     },
     padding: "10px 78px",
   },
-  image: {
-    marginTop: "10px",
-  },
   link: {
     textDecoration: "none",
     color: "black",

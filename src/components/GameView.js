@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Chessboardjsx from "chessboardjsx";
 import { TopHeader } from "./TopHeader";
-import { PageNameHeader } from "./PageNameHeader";
 import Chess from "chess.js";
 import {
   Button,
