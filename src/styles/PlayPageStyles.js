@@ -7,17 +7,6 @@ export const PlayPageStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
   },
-  Backbutton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    fontSize: "10px",
-    variant: "contained",
-    marginTop: "10px",
-    "&:hover": {
-      backgroundColor: "#6877ca",
-    },
-  },
-
   hostButton: {
     backgroundColor: "#3f51b5",
     color: "white",
@@ -25,6 +14,9 @@ export const PlayPageStyles = makeStyles({
     marginTop: "75px",
     padding: "0 93px",
     "&:hover": {
+      backgroundColor: "#6877ca",
+    },
+    "&:disabled": {
       backgroundColor: "#6877ca",
     },
   },
@@ -35,6 +27,9 @@ export const PlayPageStyles = makeStyles({
     marginTop: "35px",
     padding: "0 100px",
     "&:hover": {
+      backgroundColor: "#6877ca",
+    },
+    "&:disabled": {
       backgroundColor: "#6877ca",
     },
   },

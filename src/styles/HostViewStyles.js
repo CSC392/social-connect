@@ -9,7 +9,10 @@ export const HostViewStyles = makeStyles({
   },
   gameSelection: {
     fontSize: "15px",
-    fontFamily: "sans-serif-light",
+    fontFamily: "Helvetica",
+  },
+  form: {
+    minWidth: "160px",
   },
   hostMenuButton: {
     backgroundColor: "#3f51b5",
@@ -23,9 +26,6 @@ export const HostViewStyles = makeStyles({
       backgroundColor: "#6877ca",
     },
     padding: "10px 78px",
-  },
-  image: {
-    marginTop: "10px",
   },
   link: {
     textDecoration: "none",

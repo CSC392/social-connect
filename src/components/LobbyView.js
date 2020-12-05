@@ -2,7 +2,6 @@ import React from "react";
 import { TopHeader } from "./TopHeader";
 import { Button, CircularProgress } from "@material-ui/core";
 import { imagesData } from "../assets/imagesData";
-import { Link } from "react-router-dom";
 import { LobbyViewStyles } from "../styles/LobbyViewStyles";
 
 export const LobbyView = (props) => {
@@ -31,11 +30,6 @@ export const LobbyView = (props) => {
   return (
     <div>
       <TopHeader />
-      <div className={classes.backButton}>
-        <Link to="/play" className={classes.link}>
-          <Button className={classes.Backbutton}>Back</Button>
-        </Link>
-      </div>
       <div className={classes.body}>
         <p className={classes.headers}>Game Selection</p>
         <img

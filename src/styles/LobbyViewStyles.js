@@ -14,6 +14,9 @@ export const LobbyViewStyles = makeStyles({
     "&:hover": {
       backgroundColor: "#6877ca",
     },
+    "&:disabled": {
+      backgroundColor: "#6877ca",
+    },
   },
   greyText: {
     backgroundColor: "#E5E5E5",
@@ -27,10 +30,12 @@ export const LobbyViewStyles = makeStyles({
   },
   headers: {
     fontSize: "20px",
+    fontFamily: "Helvetica",
   },
   subheaders: {
     display: "flex",
     alignItems: "center",
+    fontFamily: "Helvetica",
   },
   titles: {
     fontSize: "15px",
@@ -41,16 +46,6 @@ export const LobbyViewStyles = makeStyles({
   link: {
     textDecoration: "none",
   },
-  Backbutton: {
-    backgroundColor: "#3f51b5",
-    color: "white",
-    fontSize: "10px",
-    variant: "contained",
-    marginTop: "10px",
-    "&:hover": {
-      backgroundColor: "#6877ca",
-    },
-  },
   loadingContainer: {
     display: "flex",
     flexDirection: "column",
@@ -60,5 +55,6 @@ export const LobbyViewStyles = makeStyles({
     color: "#f50057",
     fontSize: "20px",
     marginTop: "25px",
+    fontFamily: "Helvetica",
   },
 });

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Chessboardjsx from "chessboardjsx";
 import { TopHeader } from "./TopHeader";
-import { PageNameHeader } from "./PageNameHeader";
 import Chess from "chess.js";
 import {
   Button,
@@ -24,6 +23,7 @@ const useStyles = makeStyles({
   },
   boxContainer: {
     height: "550px",
+    fontFamily: "Helvetica",
   },
   loadingContainer: {
     display: "flex",
@@ -34,6 +34,7 @@ const useStyles = makeStyles({
   helperText: {
     color: "#f50057",
     fontSize: "20px",
+    fontFamily: "Helvetica",
   },
 });
 
