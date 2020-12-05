@@ -1,6 +1,6 @@
 import React from "react";
 import { TopHeader } from "./TopHeader";
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import { imagesData } from "../assets/imagesData";
 import { Link } from "react-router-dom";
 import { LobbyViewStyles } from "../styles/LobbyViewStyles";
@@ -8,7 +8,20 @@ import { LobbyViewStyles } from "../styles/LobbyViewStyles";
 export const LobbyView = (props) => {
   const classes = LobbyViewStyles({});
 
-  const { gameCode, hostName, joinName } = props;
+  const {
+    gameCode,
+    hostName,
+    joinName,
+    enablePlayButtons,
+    role,
+    socket,
+  } = props;
+  const helperText = role === "host" ? "Waiting for another player" : "Waiting for host to start the game";
+
+  socket.on("start game", startGame);
+  function startGame() {
+    props.goNext("lobby", "game");
+  }
 
   //This is to get the name of the game selected
   const selectedGameData = imagesData.filter(
@@ -43,11 +56,19 @@ export const LobbyView = (props) => {
         <Button
           className={classes.startGame}
           onClick={() => {
+            socket.emit("start game", gameCode);
             props.goNext("lobby", "game");
           }}
+          disabled={!enablePlayButtons}
         >
           Start Game
         </Button>
+        {!enablePlayButtons && (
+          <div className={classes.loadingContainer}>
+            <p className={classes.helperText}>{helperText}</p>
+            <CircularProgress color="secondary" />
+          </div>
+        )}
       </div>
     </div>
   );

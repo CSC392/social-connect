@@ -51,4 +51,14 @@ export const LobbyViewStyles = makeStyles({
       backgroundColor: "#6877ca",
     },
   },
+  loadingContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  helperText: {
+    color: "#f50057",
+    fontSize: "20px",
+    marginTop: "25px",
+  },
 });

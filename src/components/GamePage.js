@@ -9,6 +9,7 @@ export const GamePage = (props) => {
   const [history, setHistory] = useState([]);
   const [hostUsername, setHostUsername] = useState("");
   const [joinUsername, setJoinUsername] = useState("");
+  const [enablePlayButtons, setEnablePlayButtons] = useState(false);
   const { gameCode, role } = props.location.state;
 
   const hostData = {
@@ -26,6 +27,9 @@ export const GamePage = (props) => {
 
   function setUsernameForJoin(joinName) {
     setJoinUsername(joinName);
+    if (role === "host") {
+      setEnablePlayButtons(true);
+    }
   }
 
   function getUsernameForHost() {
@@ -54,6 +58,8 @@ export const GamePage = (props) => {
           hostName={hostUsername}
           joinName={joinUsername}
           socket={socket}
+          role={role}
+          enablePlayButtons={enablePlayButtons}
         />
       );
 
@@ -68,6 +74,7 @@ export const GamePage = (props) => {
           joinName={joinUsername}
           socket={socket}
           role={role}
+          enablePlayButtons={enablePlayButtons}
         />
       );
 

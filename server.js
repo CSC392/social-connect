@@ -50,9 +50,11 @@ const handle = (io, socket) => {
   socket.on("joinGame", joinGame);
   socket.on("host username", hostUsername);
   socket.on("validate join code", validateJoinCode);
+  socket.on("start game", startGame);
   socket.on("move", updateGameState);
   socket.on("game over", endGame);
   socket.on("message", transmitMessage);
+  socket.on("play again", playAgain);
 };
 
 function host(hostData) {
@@ -92,6 +94,10 @@ function validateJoinCode(gameId) {
   return;
 }
 
+function startGame(gameId) {
+  this.to(gameId).emit("start game");
+}
+
 function updateGameState(data) {
   const { newMove, gameId } = data;
   this.to(gameId).emit("updateGameState", newMove);
@@ -105,4 +111,8 @@ function endGame(data) {
 function transmitMessage(data) {
   const { message, gameId } = data;
   this.to(gameId).emit("message", message);
+}
+
+function playAgain(gameId) {
+  this.to(gameId).emit("play again");
 }

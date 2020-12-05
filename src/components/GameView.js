@@ -9,6 +9,7 @@ import {
   DialogTitle,
   makeStyles,
   Box,
+  CircularProgress,
 } from "@material-ui/core";
 import { MuiChat, ChatController } from "chat-ui-react";
 
@@ -23,6 +24,16 @@ const useStyles = makeStyles({
   },
   boxContainer: {
     height: "550px",
+  },
+  loadingContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    paddingBottom: "20px",
+  },
+  helperText: {
+    color: "#f50057",
+    fontSize: "20px",
   },
 });
 
@@ -54,7 +65,7 @@ export const GameView = (props) => {
   const [winner, setWinner] = useState("");
   const classes = useStyles({});
 
-  const { socket, gameCode } = props;
+  const { socket, gameCode, enablePlayButtons, role } = props;
 
   const [chatCtl] = React.useState(new ChatController());
 
@@ -63,6 +74,7 @@ export const GameView = (props) => {
     socket.on("updateGameState", updateGameState);
     socket.on("endGame", endGame);
     socket.on("message", receiveMessage);
+    socket.on("play again", playAgain);
   });
 
   useMemo(async () => {
@@ -104,6 +116,10 @@ export const GameView = (props) => {
     });
   }
 
+  function playAgain() {
+    props.goBack();
+  }
+
   const onDrop = ({ sourceSquare, targetSquare }) => {
     // build move parameters
     let moveOptions = {
@@ -119,8 +135,8 @@ export const GameView = (props) => {
     if (newMove != null) {
       // prevent opposing player from playing as player
       if (
-        (props.role === "host" && newMove.color === "b") ||
-        (props.role === "join" && newMove.color === "w")
+        (role === "host" && newMove.color === "b") ||
+        (role === "join" && newMove.color === "w")
       ) {
         chess.undo();
         return;
@@ -192,17 +208,19 @@ export const GameView = (props) => {
     <div>
       <TopHeader />
 
-      <PageNameHeader onClick={props.goBack}></PageNameHeader>
-
       <Box display="flex" p={1} className={classes.boxContainer}>
         <div>
           <Box bgcolor={turn === "w" ? "#3f51b5" : "white"} {...playerBox}>
             <Box bgcolor="white" {...iconBox} />
-            <h1 style={{ textAlign: "center", color: "black" }}>{props.hostName}</h1>
+            <h1 style={{ textAlign: "center", color: "black" }}>
+              {props.hostName}
+            </h1>
           </Box>
           <Box bgcolor={turn === "b" ? "#3f51b5" : "white"} {...playerBox}>
             <Box bgcolor="black" {...iconBox} />
-            <h1 style={{ textAlign: "center", color: "black" }}>{props.joinName}</h1>
+            <h1 style={{ textAlign: "center", color: "black" }}>
+              {props.joinName}
+            </h1>
           </Box>
           <div>
             <ul>{moveHistory}</ul>
@@ -211,7 +229,7 @@ export const GameView = (props) => {
         <Chessboardjsx
           position={gameState.fen}
           onDrop={onDrop}
-          orientation={props.role === "host" ? "White" : "Black"}
+          orientation={role === "host" ? "White" : "Black"}
         />
 
         <MuiChat chatController={chatCtl}></MuiChat>
@@ -222,9 +240,25 @@ export const GameView = (props) => {
           <DialogTitle>
             {isDone} by {gameOver.gameOverType}!
           </DialogTitle>
-          <Button className={classes.playButton} onClick={props.goBack}>
-            Play again
-          </Button>
+          {enablePlayButtons && (
+            <Button
+              className={classes.playButton}
+              onClick={() => {
+                socket.emit("play again", gameCode);
+                props.goBack();
+              }}
+            >
+              Play again
+            </Button>
+          )}
+          {!enablePlayButtons && (
+            <div className={classes.loadingContainer}>
+              <p className={classes.helperText}>
+                Waiting for host to play again
+              </p>
+              <CircularProgress color="secondary" />
+            </div>
+          )}
         </Dialog>
       )}
     </div>
