@@ -9,7 +9,7 @@ export const HostViewStyles = makeStyles({
   },
   gameSelection: {
     fontSize: "15px",
-    fontFamily: "sans-serif-light",
+    fontFamily: "Helvetica",
   },
   form: {
     minWidth: "160px",

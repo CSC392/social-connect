@@ -27,10 +27,12 @@ export const LobbyViewStyles = makeStyles({
   },
   headers: {
     fontSize: "20px",
+    fontFamily: "Helvetica",
   },
   subheaders: {
     display: "flex",
     alignItems: "center",
+    fontFamily: "Helvetica",
   },
   titles: {
     fontSize: "15px",
@@ -50,5 +52,6 @@ export const LobbyViewStyles = makeStyles({
     color: "#f50057",
     fontSize: "20px",
     marginTop: "25px",
+    fontFamily: "Helvetica",
   },
 });

@@ -23,6 +23,7 @@ const useStyles = makeStyles({
   },
   boxContainer: {
     height: "550px",
+    fontFamily: "Helvetica",
   },
   loadingContainer: {
     display: "flex",
@@ -33,6 +34,7 @@ const useStyles = makeStyles({
   helperText: {
     color: "#f50057",
     fontSize: "20px",
+    fontFamily: "Helvetica",
   },
 });
 
