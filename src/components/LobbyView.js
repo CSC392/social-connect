@@ -8,7 +8,7 @@ import { LobbyViewStyles } from "../styles/LobbyViewStyles";
 export const LobbyView = (props) => {
   const classes = LobbyViewStyles({});
 
-  const { gameCode, hostName, joinName } = props;
+  const { gameCode, hostName, joinName, enablePlayButtons, role } = props;
 
   //This is to get the name of the game selected
   const selectedGameData = imagesData.filter(
@@ -45,6 +45,7 @@ export const LobbyView = (props) => {
           onClick={() => {
             props.goNext("lobby", "game");
           }}
+          disabled={!enablePlayButtons}
         >
           Start Game
         </Button>
