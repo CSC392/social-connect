@@ -54,6 +54,7 @@ const handle = (io, socket) => {
   socket.on("move", updateGameState);
   socket.on("game over", endGame);
   socket.on("message", transmitMessage);
+  socket.on("play again", playAgain);
 };
 
 function host(hostData) {
@@ -110,4 +111,8 @@ function endGame(data) {
 function transmitMessage(data) {
   const { message, gameId } = data;
   this.to(gameId).emit("message", message);
+}
+
+function playAgain(gameId) {
+  this.to(gameId).emit("play again");
 }

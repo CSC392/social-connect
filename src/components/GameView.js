@@ -74,6 +74,7 @@ export const GameView = (props) => {
     socket.on("updateGameState", updateGameState);
     socket.on("endGame", endGame);
     socket.on("message", receiveMessage);
+    socket.on("play again", playAgain);
   });
 
   useMemo(async () => {
@@ -113,6 +114,10 @@ export const GameView = (props) => {
       content: message,
       self: false,
     });
+  }
+
+  function playAgain() {
+    props.goBack();
   }
 
   const onDrop = ({ sourceSquare, targetSquare }) => {
@@ -238,7 +243,13 @@ export const GameView = (props) => {
             {isDone} by {gameOver.gameOverType}!
           </DialogTitle>
           {enablePlayButtons && (
-            <Button className={classes.playButton} onClick={props.goBack}>
+            <Button
+              className={classes.playButton}
+              onClick={() => {
+                socket.emit("play again", gameCode);
+                props.goBack();
+              }}
+            >
               Play again
             </Button>
           )}
