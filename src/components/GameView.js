@@ -9,6 +9,7 @@ import {
   DialogTitle,
   makeStyles,
   Box,
+  CircularProgress,
 } from "@material-ui/core";
 import { MuiChat, ChatController } from "chat-ui-react";
 
@@ -23,6 +24,16 @@ const useStyles = makeStyles({
   },
   boxContainer: {
     height: "550px",
+  },
+  loadingContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    paddingBottom: "20px",
+  },
+  helperText: {
+    color: "#f50057",
+    fontSize: "20px",
   },
 });
 
@@ -226,13 +237,19 @@ export const GameView = (props) => {
           <DialogTitle>
             {isDone} by {gameOver.gameOverType}!
           </DialogTitle>
-          <Button
-            className={classes.playButton}
-            disabled={!enablePlayButtons}
-            onClick={props.goBack}
-          >
-            Play again
-          </Button>
+          {enablePlayButtons && (
+            <Button className={classes.playButton} onClick={props.goBack}>
+              Play again
+            </Button>
+          )}
+          {!enablePlayButtons && (
+            <div className={classes.loadingContainer}>
+              <p className={classes.helperText}>
+                Waiting for host to play again
+              </p>
+              <CircularProgress color="secondary" />
+            </div>
+          )}
         </Dialog>
       )}
     </div>
