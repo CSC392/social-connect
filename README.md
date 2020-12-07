@@ -38,10 +38,10 @@ The link to the Social Connect app can be found here: http://social-connect-app.
 5. Start the node.js server with ` node server.js`
 6. Navigate to `http://localhost:5000`on web browser
 
-` $ npm run build`
+` $ npm run build
 
-`> social-connect@1.0.0 build /social-connect`
-`> react-scripts build `
+> social-connect@1.0.0 build /social-connect
+> react-scripts build
 
 Creating an optimized production build...
 Compiled without warnings.
@@ -63,8 +63,7 @@ serve -s build
 
 Find out more about deployment here:
 
-https://cra.link/deployment
-`
+https://cra.link/deployment `
 
 ## Development
 
