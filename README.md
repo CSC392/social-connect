@@ -11,8 +11,10 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 1. [Usage](#Usage)
 2. [Installation to Local Machine](#Installation)
 3. [Development](#Development)
-4. [Authors](#Authors)
-5. [Acknowledgements](#Acknowledgements)
+4. [Challenges](#Challenges)
+5. [Improvements](#Improvements)
+6. [Authors](#Authors)
+7. [Acknowledgements](#Acknowledgements)
 
 ## Usage
 
@@ -22,7 +24,33 @@ The link to the Social Connect app can be found here: http://social-connect-app.
 
 ## Installation to Local Machine
 
-**How to run Social Connect locally**
+**Prerequisites**
+
+- Install Node.js
+- Version >= 10.18 (Includes npm and npx)
+- Install create-react-app (optional)
+
+**How to run Social Connect (local)**
+
+1. Clone and enter the github repo: https://github.com/CSC398/social-connect
+2. Switch to `dev` branch
+3. Install node modules using `npm install`
+4. Run the application using `npm start`
+5. Navigate to `http://localhost:3000` on web browser
+
+**Quick Start**
+
+```
+git clone https://github.com/emilierobichaud1/social-connect
+cd social-connect
+git checkout dev
+npm install
+npm start
+```
+
+---
+
+**How to run Social Connect locally after Heroku deployment**
 
 1. Clone and enter the github repo: https://github.com/CSC398/social-connect
 2. Switch to `master`branch
@@ -77,6 +105,29 @@ The players are connected through a socket, implemented using [npm socket.io](ht
 Once players are connected in game play, the state of the game is captured through the Chess.js state-variable chess.fen(), as per the Chess.js game engine, and is updated as players move pieces on the board. Once a piece has been moved by one player, the state of the board is passed through the socket to the other player and their Chessboard is updated accordingly, while the Chess.js game engine keeps track of which player’s turn it is. React hooks are used to identify, use and reuse stateful logic about the major components.
 
 ---
+
+## Challenges
+
+**Technical Challenges**
+
+**Non-Techincal Challenges**
+The entire development of this project was done remotely while the development team practiced social distancing
+as per imposed regulations due to the ongoing COVID-19 pandemic (2020).
+This created difficulty in clear communication while the developers worked asynchronously.
+Additionally, developers were continuously working on other projects/assignments due to conflicts with school and work throughout the
+development of the project, which made scheduling and time management difficult.
+
+## Improvements
+
+**Potential UI improvements**
+
+- Pawn is automatically promoted to queen upon reaching other side of the board. User should have a choice of chess piece to change pawn to.
+- Add accessibility features and accessibility compatibility throughout the project
+- Add highlighting when hovering over chess piece to show possible moves for piece.
+- Have responsive window sizing, so that entire view scales with browser window size
+- Join Button in the Join Game dialogue box/ pop-up should span width of dialogue box
+
+**Potential General Improvements**
 
 ## Authors
 
