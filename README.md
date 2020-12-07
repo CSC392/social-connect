@@ -100,7 +100,7 @@ Server started on port 5000
 
 ## Development
 
-Social Connect is built using `React.js` and `CSS makestyles` styling to create a functional user interface for gameplay.
+Social Connect is built using `React.js` and `Material-UI` styling to create a functional user interface for gameplay.
 
 This project uses routers to switch to all components in this project with the suffix “Page” (i.e. ./HomePage, ./GamePage and ./PlayPage). This project also uses conditional rendering to render all components with “View” as the suffix.
 
