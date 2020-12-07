@@ -13,6 +13,7 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 3. [Development](#Development)
 4. [Challenges](#Challenges)
 5. [Improvements](#Improvements)
+6. [Next Steps] (#Next Steps)
 6. [Authors](#Authors)
 7. [Acknowledgements](#Acknowledgements)
 
@@ -119,7 +120,7 @@ development of the project, which made scheduling and time management difficult.
 
 ## Improvements
 
-**Potential UI improvements**
+**Potential Improvements**
 
 - Pawn is automatically promoted to queen upon reaching other side of the board. User should have a choice of chess piece to change pawn to.
 - Add accessibility features and accessibility compatibility throughout the project
@@ -127,7 +128,12 @@ development of the project, which made scheduling and time management difficult.
 - Have responsive window sizing, so that entire view scales with browser window size
 - Join Button in the Join Game dialogue box/ pop-up should span width of dialogue box
 
-**Potential General Improvements**
+
+## Next Steps
+- Add new turn-based games (e.g. Chess, Ludo, etc.)
+- Include a browse feature, so that users can browse public/open games and join through lobby
+- Add video chat feature
+
 
 ## Authors
 
