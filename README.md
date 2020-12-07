@@ -17,7 +17,7 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 
 ## Preview
 
-![HomePage.PNG](./src/assets/HomePage.PNG)
+![HomePage.PNG](./src/assets/HomePage.PNG = 350x423)
 ![GameSelection.PNG](./src/assets/GameSelection.PNG)
 ![midgameconvo.PNG](./src/assets/midgameconvo.png)
 
