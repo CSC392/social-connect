@@ -8,50 +8,59 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 
 ## Table of contents
 
-[TOC]
+`[TOC]`
 
-## ##Preview
+## Preview
 
 ![HomePage.PNG](src\assets\HomePage.PNG)
 ![GameSelection.PNG](src\assets\GameSelection.PNG)
 ![midgameconvo.PNG](src\assets\logo.png)
 
-##Usage
+## Usage
+
 This project was deployed to Heroku in December of 2020.
 
 The link to the Social Connect app can be found here: http://social-connect-app.herokuapp.com/
 
-##Installation to Local Machine
-**How to run Social Connect locally** 1. Clone and enter the github repo: https://github.com/CSC398/social-connect 2. Switch to `master`branch 3. Install node modules using ` npm install` 4. Build a production version of the app with `npm run build` 5. Start the node.js server with ` node server.js` 6. Navigate to `http://localhost:5000`on web browser
+## Installation to Local Machine
 
-     $ npm run build`
+**How to run Social Connect locally**
 
-    `> social-connect@1.0.0 build /social-connect`
-    `> react-scripts build `
+1. Clone and enter the github repo: https://github.com/CSC398/social-connect
+2. Switch to `master`branch
+3. Install node modules using ` npm install`
+4. Build a production version of the app with `npm run build`
+5. Start the node.js server with ` node server.js`
+6. Navigate to `http://localhost:5000`on web browser
 
-    Creating an optimized production build...
-    Compiled without warnings.
+   $ npm run build`
 
-    File sizes after gzip:
+   `> social-connect@1.0.0 build /social-connect`
+   `> react-scripts build `
 
-      226.99 KB  build/static/js/2.a5df9fc1.chunk.js
-      3.98 KB    build/static/js/main.5fcda821.chunk.js
-      777 B      build/static/js/runtime-main.d1e23670.js
+   Creating an optimized production build...
+   Compiled without warnings.
 
-    The project was built assuming it is hosted at /.
-    You can control this with the homepage field in your package.json.
+   File sizes after gzip:
 
-    The build folder is ready to be deployed.
-    You may serve it with a static server:
+   226.99 KB build/static/js/2.a5df9fc1.chunk.js
+   3.98 KB build/static/js/main.5fcda821.chunk.js
+   777 B build/static/js/runtime-main.d1e23670.js
 
-      npm install -g serve
-      serve -s build
+   The project was built assuming it is hosted at /.
+   You can control this with the homepage field in your package.json.
 
-    Find out more about deployment here:
+   The build folder is ready to be deployed.
+   You may serve it with a static server:
 
-      https://cra.link/deployment
+   npm install -g serve
+   serve -s build
 
-##Development
+   Find out more about deployment here:
+
+   https://cra.link/deployment
+
+## Development
 
 Social Connect is built using `React.js` and `CSS makestyles` styling to create a functional user interface for gameplay.
 
@@ -69,7 +78,7 @@ Once players are connected in game play, the state of the game is captured throu
 
 ---
 
-##Authors
+## Authors
 
 Alana Hodge (2020) https://github.com/alanahodge
 
@@ -85,5 +94,6 @@ Neraj Manamperi (2020) https://github.com/NerajM
 
 **Supervisor:** Professor Andi Bergen (2020)
 
-##Acknowledgements
+## Acknowledgements
+
 Thank you to Emilie Robichaud, our team’s amazing project manager, and Professor Andi Bergen for supervision and guidance during the entirety of this project.
