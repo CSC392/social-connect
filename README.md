@@ -8,18 +8,11 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 
 ## Table of contents
 
-1. [Preview](#Preview)
-2. [Usage](#Usage)
-3. [Installation to Local Machine](#Installation)
-4. [Development](#Development)
-5. [Authors](#Authors)
-6. [Acknowledgements](#Acknowledgements)
-
-## Preview
-
-![HomePage.PNG](./src/assets/HomePage.PNG = 350x423)
-![GameSelection.PNG](./src/assets/GameSelection.PNG)
-![midgameconvo.PNG](./src/assets/midgameconvo.png)
+1. [Usage](#Usage)
+2. [Installation to Local Machine](#Installation)
+3. [Development](#Development)
+4. [Authors](#Authors)
+5. [Acknowledgements](#Acknowledgements)
 
 ## Usage
 
