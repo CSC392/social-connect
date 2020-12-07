@@ -19,7 +19,7 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 
 ![HomePage.PNG](./src/assets/HomePage.PNG)
 ![GameSelection.PNG](./src/assets/GameSelection.PNG)
-![midgameconvo.PNG](./src/assets/logo.png)
+![midgameconvo.PNG](./src/assets/midgameconvo.png)
 
 ## Usage
 
