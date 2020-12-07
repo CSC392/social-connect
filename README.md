@@ -9,13 +9,14 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 ## Table of contents
 
 1. [Usage](#Usage)
-2. [Installation to Local Machine](#Installation)
-3. [Development](#Development)
-4. [Challenges](#Challenges)
-5. [Improvements](#Improvements)
-6. [Next Steps](#Next-Steps)
-6. [Authors](#Authors)
-7. [Acknowledgements](#Acknowledgements)
+2. [Installation](#Installation)
+3. [Deployment](#Deployment)
+4. [Development](#Development)
+5. [Challenges](#Challenges)
+6. [Improvements](#Improvements)
+7. [Next Steps](#Next-Steps)
+8. [Authors](#Authors)
+9. [Acknowledgements](#Acknowledgements)
 
 ## Usage
 
@@ -23,7 +24,7 @@ This project was deployed to Heroku in December of 2020.
 
 The link to the Social Connect app can be found here: http://social-connect-app.herokuapp.com/
 
-## Installation to Local Machine
+## Installation
 
 **Prerequisites**
 
@@ -31,34 +32,14 @@ The link to the Social Connect app can be found here: http://social-connect-app.
 - Version >= 10.18 (Includes npm and npx)
 - Install create-react-app (optional)
 
-**How to run Social Connect (local)**
-
-1. Clone and enter the github repo: https://github.com/CSC398/social-connect
-2. Switch to `dev` branch
-3. Install node modules using `npm install`
-4. Run the application using `npm start`
-5. Navigate to `http://localhost:3000` on web browser
-
-**Quick Start**
-
-```
-git clone https://github.com/emilierobichaud1/social-connect
-cd social-connect
-git checkout dev
-npm install
-npm start
-```
-
----
-
-**How to run Social Connect locally after Heroku deployment**
+**How to run**
 
 1. Clone and enter the github repo: https://github.com/CSC398/social-connect
 2. Switch to `master`branch
 3. Install node modules using ` npm install`
 4. Build a production version of the app with `npm run build`
 5. Start the node.js server with ` node server.js`
-6. Navigate to `http://localhost:5000`on web browser
+6. Navigate to `http://localhost:PORT`on web browser
 
 ```
  $ npm run build
@@ -88,6 +69,34 @@ Find out more about deployment here:
 
 https://cra.link/deployment
 ```
+```
+$ node server.js
+Server started on port 5000
+```
+## Deployment
+
+**Prerequisites**
+1. Clone directory
+`$ git clone https://github.com/CSC398/social-connect/`
+2. cd into directory
+`$ cd social-connect`
+3. Switch to master branch
+`$ git checkout master`
+
+**How to deploy**
+1. Create a Heroku account
+2. Install Heroku Command Line Interface (CLI)
+`$ brew install heroku/brew/heroku`
+3. Login to Heroku through your terminal 
+`$ heroku login`
+4. Create an app on Heroku with the create-react-app buildpack 
+`$ heroku create <app_name> --buildpack https://github.com/mars/create-react-app-buildpack`
+5. Deploy your app 
+`$ git push heroku master`
+6. Scale your app
+`$ heroku ps:scale web=1`
+7. Open your app
+`$ heroku open`
 
 ## Development
 
