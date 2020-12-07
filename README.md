@@ -13,7 +13,7 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 3. [Development](#Development)
 4. [Challenges](#Challenges)
 5. [Improvements](#Improvements)
-6. [Next Steps] (#Next-Steps)
+6. [Next Steps](#Next-Steps)
 6. [Authors](#Authors)
 7. [Acknowledgements](#Acknowledgements)
 
