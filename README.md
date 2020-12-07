@@ -8,13 +8,18 @@ This is a project developed as part of DSC Community Projects in Fall 2020.
 
 ## Table of contents
 
-`[TOC]`
+1. [Preview](#Preview)
+2. [Usage](#Usage)
+3. [Installation to Local Machine](#Installation)
+4. [Development](#Development)
+5. [Authors](#Authors)
+6. [Acknowledgements](#Acknowledgements)
 
 ## Preview
 
-![HomePage.PNG](src\assets\HomePage.PNG)
-![GameSelection.PNG](src\assets\GameSelection.PNG)
-![midgameconvo.PNG](src\assets\logo.png)
+[HomePage.PNG](src\assets\HomePage.PNG)
+[GameSelection.PNG](src\assets\GameSelection.PNG)
+[midgameconvo.PNG](src\assets\logo.png)
 
 ## Usage
 
@@ -33,32 +38,33 @@ The link to the Social Connect app can be found here: http://social-connect-app.
 5. Start the node.js server with ` node server.js`
 6. Navigate to `http://localhost:5000`on web browser
 
-   $ npm run build`
+` $ npm run build`
 
-   `> social-connect@1.0.0 build /social-connect`
-   `> react-scripts build `
+`> social-connect@1.0.0 build /social-connect`
+`> react-scripts build `
 
-   Creating an optimized production build...
-   Compiled without warnings.
+Creating an optimized production build...
+Compiled without warnings.
 
-   File sizes after gzip:
+File sizes after gzip:
 
-   226.99 KB build/static/js/2.a5df9fc1.chunk.js
-   3.98 KB build/static/js/main.5fcda821.chunk.js
-   777 B build/static/js/runtime-main.d1e23670.js
+226.99 KB build/static/js/2.a5df9fc1.chunk.js
+3.98 KB build/static/js/main.5fcda821.chunk.js
+777 B build/static/js/runtime-main.d1e23670.js
 
-   The project was built assuming it is hosted at /.
-   You can control this with the homepage field in your package.json.
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
 
-   The build folder is ready to be deployed.
-   You may serve it with a static server:
+The build folder is ready to be deployed.
+You may serve it with a static server:
 
-   npm install -g serve
-   serve -s build
+npm install -g serve
+serve -s build
 
-   Find out more about deployment here:
+Find out more about deployment here:
 
-   https://cra.link/deployment
+https://cra.link/deployment
+`
 
 ## Development
 
@@ -91,8 +97,6 @@ Navya Gupta (2020) https://github.com/NavyaGupta
 Neraj Manamperi (2020) https://github.com/NerajM
 
 **Project Manager:** Emilie Robichaud (2020) https://github.com/emilierobichaud1
-
-**Supervisor:** Professor Andi Bergen (2020)
 
 ## Acknowledgements
 
