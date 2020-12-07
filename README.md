@@ -142,6 +142,7 @@ development of the project, which made scheduling and time management difficult.
 - Add new turn-based games (e.g. Chess, Ludo, etc.)
 - Include a browse feature, so that users can browse public/open games and join through lobby
 - Add video chat feature
+- Include Move History for game in UI
 
 
 ## Authors
