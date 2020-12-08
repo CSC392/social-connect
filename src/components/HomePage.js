@@ -60,7 +60,7 @@ export const HomePage = () => {
         <div className={classes.topBars}>
           <a
             className={classes.codeLink}
-            href="https://github.com/CSC398/social-connect/blob/master/README.md"
+            href="https://github.com/CSC398/social-connect/blob/master/About.md"
           >
             About
           </a>
